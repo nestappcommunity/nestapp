@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nest — A Place to Show Up as a Mom, Not a Brand</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --linen: #F4EFE6; --blush: #D6A9A2; --sage: #AEB8A2;
+  --olive: #6E7461; --mocha: #4A4038; --fig: #9B5E5E; --fig-light: #B57878;
+  --fig-pale: #F5ECEC; --dusk: #F0EBE3; --pebble: #7A6E68; --ink: #3D3028;
+  --text-body: #7A6E68; --text-soft: #9E948E;
+  --text-ghost: #BCB3AC; --border: #DDD4C6; --border-soft: #EAE3D8; --white-warm: #FDFAF6;
+  --mocha-tint: #EDE7DE;
+}
+html { scroll-behavior: smooth; }
+section { display: block; margin: 0; }
+body { font-family: 'DM Sans', sans-serif; background: var(--linen); color: var(--mocha); overflow-x: hidden; margin:0; padding:0; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:none;} }
+@keyframes fadeIn { from{opacity:0;}to{opacity:1;} }
+@keyframes drift { 0%,100%{transform:translateY(0);}40%{transform:translateY(-10px);}70%{transform:translateY(5px);} }
+.a1{animation:fadeUp .7s .10s ease both;} .a2{animation:fadeUp .7s .25s ease both;}
+.a3{animation:fadeUp .7s .40s ease both;} .a4{animation:fadeUp .7s .55s ease both;}
+.eyebrow { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--olive); font-weight:500; margin-bottom:16px; display:block; }
+.eyebrow-light { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:rgba(174,184,162,.7); font-weight:500; margin-bottom:16px; display:block; }
+
+/* NAV */
+nav { position:fixed;top:0;left:0;right:0;z-index:100; padding:16px 52px; display:flex;align-items:center;justify-content:space-between; background:rgba(244,239,230,.94); backdrop-filter:blur(18px); border-bottom:1px solid rgba(203,187,168,.4); animation:fadeIn .7s ease both; }
+.nav-logo { font-family:'Playfair Display',serif; font-size:22px; color:var(--mocha); letter-spacing:-.3px; }
+.nav-logo em { color:var(--fig); font-style:normal; }
+.nav-links { display:flex; align-items:center; gap:32px; }
+.nav-link { font-size:14px; color:var(--text-soft); text-decoration:none; transition:color .2s; }
+.nav-link:hover { color:var(--mocha); }
+.nav-btn { background:var(--mocha); color:var(--linen); border:none; border-radius:50px; padding:10px 24px; font-family:'DM Sans',sans-serif; font-size:14px; font-weight:500; cursor:pointer; text-decoration:none; display:inline-block; transition:all .2s; }
+.nav-btn:hover { background:var(--fig); }
+
+/* INPUTS + BUTTONS */
+.email-in { flex:1; padding:14px 20px; border:1.5px solid var(--border); border-radius:50px; font-family:'DM Sans',sans-serif; font-size:15px; color:var(--mocha); background:var(--white-warm); outline:none; transition:border-color .2s,box-shadow .2s; min-width:0; }
+.email-in::placeholder { color:var(--text-ghost); }
+.email-in:focus { border-color:var(--blush); box-shadow:0 0 0 3px rgba(214,169,162,.18); }
+.email-in-dark { flex:1; padding:14px 20px; border:1.5px solid rgba(214,169,162,.2); border-radius:50px; background:rgba(244,239,230,.08); color:rgba(244,239,230,.88); font-family:'DM Sans',sans-serif; font-size:15px; outline:none; transition:border-color .2s; min-width:0; }
+.email-in-dark::placeholder { color:rgba(244,239,230,.28); }
+.email-in-dark:focus { border-color:rgba(214,169,162,.45); }
+.cta-btn { padding:14px 24px; background:var(--fig); color:white; border:none; border-radius:50px; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:500; cursor:pointer; white-space:nowrap; transition:all .2s; box-shadow:0 4px 18px rgba(155,94,94,.3); }
+.cta-btn:hover { background:var(--fig-light); transform:translateY(-1px); }
+.cta-btn-wide { width:100%; padding:15px; background:var(--fig); color:white; border:none; border-radius:50px; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:500; cursor:pointer; transition:all .2s; box-shadow:0 4px 18px rgba(155,94,94,.3); margin-top:8px; }
+.cta-btn-wide:hover { background:var(--fig-light); }
+.form-row { display:flex; gap:8px; flex-wrap:wrap; }
+.form-row input { flex:1; min-width:140px; }
+.trust-line { font-size:12px; color:var(--text-ghost); margin-top:10px; }
+.trust-line-dark { font-size:12px; color:rgba(244,239,230,.28); margin-top:10px; }
+.success { display:none; flex-direction:column; align-items:center; gap:8px; }
+.success.show { display:flex; }
+.success-chip { display:inline-flex; align-items:center; gap:8px; padding:11px 22px; border-radius:50px; font-size:14px; }
+.sc-light { background:var(--fig-pale); color:var(--fig); border:1px solid rgba(155,94,94,.2); }
+.sc-dark { background:rgba(214,169,162,.12); color:rgba(244,239,230,.85); border:1px solid rgba(214,169,162,.2); }
+.sn-light { font-size:13px; color:var(--text-soft); }
+.sn-dark { font-size:13px; color:rgba(244,239,230,.35); }
+
+/* ─── HERO — linen ─── */
+.hero { min-height:100vh; display:grid; place-items:center; padding:130px 24px 90px; position:relative; overflow:hidden; text-align:center; background:var(--linen); }
+.orb { position:absolute; border-radius:50%; pointer-events:none; filter:blur(80px); }
+.orb-1 { width:580px; height:460px; background:radial-gradient(ellipse,rgba(214,169,162,.3) 0%,transparent 68%); top:-120px; left:-140px; animation:drift 14s ease-in-out infinite; }
+.orb-2 { width:440px; height:440px; background:radial-gradient(ellipse,rgba(155,94,94,.12) 0%,transparent 68%); bottom:-80px; right:-100px; animation:drift 19s ease-in-out infinite reverse; }
+.orb-3 { width:300px; height:300px; background:radial-gradient(ellipse,rgba(174,184,162,.22) 0%,transparent 68%); top:38%; left:60%; animation:drift 23s ease-in-out infinite 6s; }
+.hero-inner { position:relative; z-index:1; max-width:660px; }
+.hero-badge { display:inline-flex; align-items:center; gap:8px; background:var(--white-warm); border:1px solid var(--border); padding:7px 18px; border-radius:50px; font-size:12px; color:var(--olive); font-weight:500; margin-bottom:30px; letter-spacing:.3px; box-shadow:0 2px 10px rgba(74,64,56,.07); }
+.hero h1 { font-family:'Playfair Display',serif; font-size:clamp(38px,6.5vw,70px); line-height:1.1; color:var(--mocha); margin-bottom:22px; letter-spacing:-1.5px; }
+.hero h1 em { color:var(--fig); font-style:italic; }
+.hero h1 .soft { font-style:italic; color:var(--olive); }
+.hero-sub { font-size:clamp(16px,2vw,18px); color:var(--text-body); line-height:1.78; font-weight:300; max-width:500px; margin:0 auto 44px; }
+.hero-sub em { color:var(--fig); font-style:italic; font-family:'Playfair Display',serif; }
+
+/* ─── FOUNDER STORY — linen, flows from hero ─── */
+.founder-story { background:var(--linen); padding:72px 48px 80px; }
+.founder-story-inner { max-width:640px; margin:0 auto; text-align:center; }
+.story-body { font-family:'Playfair Display',serif; font-size:clamp(16px,2vw,20px); color:var(--mocha); line-height:1.9; font-style:italic; margin-bottom:28px; }
+.story-body em { color:var(--fig); }
+.story-sig { font-size:13px; color:var(--text-soft); font-family:'DM Sans',sans-serif; font-weight:500; display:flex; align-items:center; justify-content:center; gap:10px; }
+.story-sig::before,.story-sig::after { content:''; display:block; width:28px; height:1px; background:var(--border); }
+
+/* ─── PAIN LINES — mocha tint, feels weighted ─── */
+.pain-section { background:var(--mocha-tint); padding:72px 48px; }
+.pain-inner { max-width:600px; margin:0 auto; text-align:center; }
+.pain-lines { list-style:none; margin-bottom:0; }
+.pain-lines li { font-family:'Playfair Display',serif; font-style:italic; font-size:clamp(16px,2.1vw,21px); color:var(--mocha); line-height:1.6; padding:14px 0; border-bottom:1px solid rgba(74,64,56,.1); opacity:.8; }
+.pain-lines li:last-child { border-bottom:none; }
+
+/* ─── SENTIMENTS — fig pale, warm and intimate ─── */
+.sentiments-section { background:var(--linen); padding:72px 48px; }
+.sentiments-inner { max-width:620px; margin:0 auto; text-align:center; }
+.sentiments-inner h2 { font-family:'Playfair Display',serif; font-size:clamp(22px,3vw,34px); color:var(--mocha); margin-bottom:36px; line-height:1.3; }
+.sentiments-inner h2 em { color:var(--fig); font-style:italic; }
+.sentiment { padding:20px 0; border-bottom:1px solid var(--border-soft); font-family:'Playfair Display',serif; font-style:italic; font-size:clamp(15px,1.9vw,19px); color:var(--mocha); line-height:1.65; opacity:.85; }
+.sentiment:last-child { border-bottom:none; }
+.sentiment::before { content:'"'; color:var(--blush); }
+.sentiment::after { content:'"'; color:var(--blush); }
+.hinge { font-family:'Playfair Display',serif; font-size:clamp(24px,3.5vw,38px); color:var(--fig); font-style:italic; margin-top:48px; line-height:1.3; }
+
+/* ─── COMPARISON TABLE ─── */
+.comparison { display:flex; flex-direction:column; gap:0; border:1px solid var(--border-soft); border-radius:20px; overflow:hidden; max-width:720px; margin:0 auto; }
+.comp-row { display:grid; grid-template-columns:1fr 1fr; border-bottom:1px solid var(--border-soft); }
+.comp-row:last-child { border-bottom:none; }
+.comp-old { padding:20px 24px; background:var(--white-warm); display:flex; align-items:center; border-right:1px solid var(--border-soft); }
+.comp-old-text { font-size:14px; color:var(--text-soft); font-weight:300; line-height:1.55; text-decoration:line-through; text-decoration-color:rgba(155,94,94,.3); }
+.comp-new { padding:20px 24px; background:var(--fig-pale); display:flex; align-items:center; }
+.comp-new-text { font-size:14px; color:var(--mocha); font-weight:500; line-height:1.55; }
+.comp-new-text em { color:var(--fig); font-style:normal; }
+.comp-col-header { padding:12px 24px; font-size:11px; letter-spacing:2px; text-transform:uppercase; font-weight:500; border-bottom:1px solid var(--border-soft); }
+.comp-col-header.old-h { background:var(--white-warm); color:var(--text-soft); border-right:1px solid var(--border-soft); }
+.comp-col-header.new-h { background:var(--fig-pale); color:var(--fig); }
+.comp-note { text-align:center; margin-top:20px; font-size:13px; color:var(--text-soft); font-style:italic; font-family:'Playfair Display',serif; }
+
+/* ─── RESOLUTION CARDS — ink dark, feels like a turn ─── */
+.resolution { background:var(--ink); padding:72px 48px; position:relative; overflow:hidden; }
+.res-orb-1 { position:absolute; width:500px; height:500px; border-radius:50%; background:radial-gradient(ellipse,rgba(214,169,162,.07) 0%,transparent 65%); filter:blur(80px); top:-100px; right:-80px; pointer-events:none; }
+.res-orb-2 { position:absolute; width:360px; height:360px; border-radius:50%; background:radial-gradient(ellipse,rgba(155,94,94,.06) 0%,transparent 65%); filter:blur(70px); bottom:-60px; left:-60px; pointer-events:none; }
+.resolution-inner { position:relative; z-index:1; max-width:960px; margin:0 auto; }
+.resolution-head { text-align:center; margin-bottom:48px; }
+.resolution-head h2 { font-family:'Playfair Display',serif; font-size:clamp(26px,4vw,42px); color:rgba(244,239,230,.94); line-height:1.2; }
+.resolution-head h2 em { color:var(--blush); font-style:italic; }
+.resolution-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.res-card { background:rgba(244,239,230,.06); border:1px solid rgba(244,239,230,.1); border-radius:20px; padding:32px 28px; transition:background .2s; }
+.res-card:hover { background:rgba(244,239,230,.09); }
+.res-num { font-size:11px; letter-spacing:3px; color:rgba(244,239,230,.25); font-weight:500; margin-bottom:14px; }
+.res-card h3 { font-family:'Playfair Display',serif; font-size:clamp(17px,1.9vw,21px); color:rgba(244,239,230,.92); margin-bottom:10px; line-height:1.3; }
+.res-card h3 em { color:var(--blush); font-style:italic; }
+.res-card p { font-size:14px; color:rgba(244,239,230,.48); line-height:1.75; font-weight:300; }
+
+/* ─── HOW — dusk, soft proof section ─── */
+.how { background:var(--dusk); padding:72px 48px; }
+.how-inner { max-width:960px; margin:0 auto; }
+.how-head { text-align:center; margin-bottom:48px; }
+.how-head h2 { font-family:'Playfair Display',serif; font-size:clamp(24px,3.5vw,38px); color:var(--mocha); margin-bottom:12px; }
+.how-head p { font-size:15px; color:var(--text-body); font-weight:300; line-height:1.7; max-width:420px; margin:0 auto; }
+.how-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+.how-card { padding:30px 26px; border-radius:20px; border:1px solid var(--border-soft); background:var(--white-warm); transition:transform .2s,box-shadow .2s; }
+.how-card:hover { transform:translateY(-3px); box-shadow:0 12px 36px rgba(74,64,56,.07); }
+.how-icon { width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:19px; margin-bottom:14px; }
+.how-card h3 { font-family:'Playfair Display',serif; font-size:17px; color:var(--mocha); margin-bottom:8px; }
+.how-card p { font-size:13px; color:var(--text-body); line-height:1.7; }
+
+/* ─── BRANCHES — ink dark ─── */
+.branches { background:var(--ink); padding:72px 48px; position:relative; overflow:hidden; }
+.b-orb-1 { position:absolute; width:560px; height:400px; border-radius:50%; background:radial-gradient(ellipse,rgba(214,169,162,.07) 0%,transparent 70%); filter:blur(80px); top:-120px; right:-100px; pointer-events:none; }
+.b-orb-2 { position:absolute; width:360px; height:360px; border-radius:50%; background:radial-gradient(ellipse,rgba(155,94,94,.06) 0%,transparent 70%); filter:blur(70px); bottom:-60px; left:-40px; pointer-events:none; }
+.branches-inner { position:relative; z-index:1; max-width:800px; margin:0 auto; }
+.branches-head { text-align:center; margin-bottom:40px; }
+.branches-head h2 { font-family:'Playfair Display',serif; font-size:clamp(24px,3.5vw,40px); color:rgba(244,239,230,.94); line-height:1.2; margin-bottom:12px; }
+.branches-head p { font-size:15px; color:rgba(244,239,230,.42); font-weight:300; max-width:460px; margin:0 auto 10px; }
+.branch-explain { font-size:14px; color:rgba(244,239,230,.55); font-style:italic; font-family:'Playfair Display',serif; }
+.pills-wrap { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:32px; }
+.pill { display:flex; align-items:center; gap:7px; background:rgba(244,239,230,.07); border:1px solid rgba(244,239,230,.12); border-radius:50px; padding:10px 18px; color:rgba(244,239,230,.7); font-size:13px; transition:all .2s; cursor:default; }
+.pill:hover { background:rgba(244,239,230,.12); transform:translateY(-2px); }
+.pill.blush-glow { background:rgba(214,169,162,.13); border-color:rgba(214,169,162,.28); color:rgba(214,169,162,.88); }
+.pill.sage-glow { background:rgba(174,184,162,.11); border-color:rgba(174,184,162,.26); color:rgba(174,184,162,.85); }
+.pill-icon { font-size:15px; }
+.branches-footnote { text-align:center; font-size:13px; color:rgba(244,239,230,.28); font-family:'Playfair Display',serif; font-style:italic; }
+
+/* ─── FOUNDING — white warm, clean offer ─── */
+.founding { background:var(--white-warm); padding:72px 48px; }
+.founding-inner { max-width:640px; margin:0 auto; text-align:center; }
+.founding-inner h2 { font-family:'Playfair Display',serif; font-size:clamp(26px,4vw,42px); color:var(--mocha); margin-bottom:12px; }
+.founding-sub { font-size:15px; color:var(--text-body); margin-bottom:36px; font-weight:300; line-height:1.7; max-width:500px; margin-left:auto; margin-right:auto; }
+.flock-badge { display:inline-flex; align-items:center; gap:8px; background:var(--fig-pale); border:1px solid rgba(155,94,94,.2); color:var(--fig); font-size:12px; font-weight:500; padding:5px 14px; border-radius:50px; margin-bottom:24px; letter-spacing:.3px; }
+.flock-price-wrap { display:flex; align-items:baseline; justify-content:center; gap:12px; margin-bottom:4px; }
+.flock-free { font-family:'Playfair Display',serif; font-size:68px; line-height:1; color:var(--mocha); letter-spacing:-2px; }
+.flock-free-label { font-size:15px; color:var(--text-soft); font-weight:300; text-decoration:line-through; opacity:.5; }
+.flock-tagline { font-size:14px; color:var(--text-soft); margin-bottom:36px; font-style:italic; font-family:'Playfair Display',serif; }
+.progress-wrap { background:var(--linen); border:1px solid var(--border-soft); border-radius:16px; padding:20px 24px; margin-bottom:32px; text-align:left; }
+.progress-label { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+.progress-taken { font-size:13px; font-weight:500; color:var(--mocha); }
+.progress-left { font-size:12px; color:var(--text-soft); }
+.progress-track { height:7px; background:var(--border-soft); border-radius:50px; overflow:hidden; }
+.progress-fill { height:100%; border-radius:50px; background:linear-gradient(90deg,var(--blush),var(--fig)); width:0%; transition:width 1.2s ease; }
+.progress-note { font-size:11px; color:var(--text-ghost); margin-top:8px; }
+.flock-perks { list-style:none; border:1px solid var(--border-soft); border-radius:18px; overflow:hidden; margin-bottom:32px; text-align:left; }
+.perk { display:flex; align-items:center; gap:14px; padding:16px 20px; background:var(--white-warm); border-bottom:1px solid var(--border-soft); transition:background .15s; }
+.perk:last-child { border-bottom:none; }
+.perk:hover { background:var(--linen); }
+.perk-icon { width:38px; height:38px; border-radius:10px; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:17px; }
+.perk-text h4 { font-size:13px; font-weight:500; color:var(--mocha); margin-bottom:2px; }
+.perk-text p { font-size:12px; color:var(--text-soft); line-height:1.5; }
+.flock-after { font-size:12px; color:var(--text-ghost); font-style:italic; font-family:'Playfair Display',serif; line-height:1.7; margin-top:16px; }
+
+/* ─── FUTURE PACING — ink dark, cinematic ─── */
+.future-pace { background:var(--ink); padding:80px 48px; position:relative; overflow:hidden; text-align:center; }
+.fp-orb-1 { position:absolute; width:480px; height:480px; border-radius:50%; background:radial-gradient(ellipse,rgba(214,169,162,.08) 0%,transparent 65%); filter:blur(80px); top:-80px; left:-60px; pointer-events:none; }
+.fp-orb-2 { position:absolute; width:340px; height:340px; border-radius:50%; background:radial-gradient(ellipse,rgba(155,94,94,.07) 0%,transparent 65%); filter:blur(70px); bottom:-60px; right:-40px; pointer-events:none; }
+.fp-inner { position:relative; z-index:1; max-width:600px; margin:0 auto; }
+.fp-body { font-family:'Playfair Display',serif; font-style:italic; font-size:clamp(17px,2.2vw,23px); color:rgba(244,239,230,.88); line-height:1.85; margin-bottom:28px; }
+.fp-body em { color:var(--blush); }
+.fp-close { font-size:14px; color:rgba(244,239,230,.38); font-weight:300; line-height:1.7; }
+
+/* ─── FINAL CTA — deep dark ─── */
+.final { background:var(--linen); padding:90px 48px; text-align:center; position:relative; overflow:hidden; }
+.f-orb-1 { position:absolute; width:500px; height:500px; border-radius:50%; background:radial-gradient(ellipse,rgba(214,169,162,.22) 0%,transparent 65%); filter:blur(90px); top:-140px; left:-80px; pointer-events:none; }
+.f-orb-2 { position:absolute; width:360px; height:360px; border-radius:50%; background:radial-gradient(ellipse,rgba(155,94,94,.1) 0%,transparent 65%); filter:blur(80px); bottom:-70px; right:-50px; pointer-events:none; }
+.final-inner { position:relative; z-index:1; max-width:520px; margin:0 auto; }
+.final h2 { font-family:'Playfair Display',serif; font-size:clamp(26px,4.5vw,48px); color:var(--mocha); line-height:1.15; margin-bottom:14px; }
+.final h2 em { font-style:italic; color:var(--fig); }
+.final p { font-size:16px; color:var(--text-body); margin-bottom:36px; font-weight:300; line-height:1.78; }
+
+/* FOOTER */
+footer { background:var(--mocha); padding:28px 52px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+.f-logo { font-family:'Playfair Display',serif; font-size:19px; color:rgba(244,239,230,.65); }
+.f-logo em { color:var(--blush); font-style:normal; }
+.f-words { font-size:12px; color:rgba(244,239,230,.25); font-weight:300; }
+
+@media(max-width:800px){
+  nav{padding:14px 20px;} .nav-links .nav-link{display:none;}
+  .hero{padding:110px 20px 60px;}
+  .founder-story,.pain-section,.sentiments-section,.resolution,.how,.branches,.founding,.future-pace,.final{padding-left:20px;padding-right:20px;}
+  .resolution-grid{grid-template-columns:1fr;}
+  .comp-row{grid-template-columns:1fr 1fr;}
+  .comp-old,.comp-new{padding:12px 12px;}
+  .comp-old-text,.comp-new-text{font-size:12px;}
+  .comp-col-header{padding:10px 12px;font-size:10px;}
+  footer{padding:22px 20px;flex-direction:column;text-align:center;}
+  .form-row{flex-direction:column;}
+  .form-row .cta-btn{width:100%;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">nest<em>.</em></div>
+  <div class="nav-links">
+    <a href="#branches" class="nav-link">Branches</a>
+    <a href="#pricing" class="nav-link">Membership</a>
+    <a href="#join" class="nav-btn">Claim my spot</a>
+  </div>
+</nav>
+
+<!-- ─── HERO — linen ─── -->
+<section class="hero">
+  <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
+  <div class="hero-inner">
+    <div class="hero-badge a1">🌿 &nbsp;A private app for moms — founding spots now open</div>
+    <h1 class="a2">A place to show up<br>as a <em>mom</em>,<br>not a <span class="soft">brand.</span></h1>
+    <p class="hero-sub a3">A private app for moms who want to feel <em>found, not famous.</em> No algorithm, no performing, no pressure — just real community.</p>
+    <p class="hero-sub a3" style="margin-top:-28px;font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(15px,1.8vw,18px);color:var(--fig);">A real photo. An optional caption. No grid, no aesthetic, nothing fancy — just yours.</p>
+    <div id="hf" class="a4">
+      <div class="form-row" style="max-width:480px;margin:0 auto 10px;">
+        <input type="text" class="email-in" placeholder="First name" required autocomplete="given-name">
+        <input type="email" class="email-in" placeholder="your@email.com" required autocomplete="email">
+        <button class="cta-btn" onclick="go(event,'hs','hf')">Claim my spot 🌿</button>
+      </div>
+      <p class="trust-line">No pressure to post. No guilt if you don't. Just come as you are.</p>
+      <p class="trust-line" style="margin-top:5px;">Free forever &nbsp;·&nbsp; No spam &nbsp;·&nbsp; No credit card</p>
+    </div>
+    <div class="success" id="hs">
+      <div class="success-chip sc-light">🌿 &nbsp;You're in. Welcome to the Founding Flock.</div>
+      <div class="sn-light">We'll be in touch when Nest opens its doors.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOUNDER STORY — linen ─── -->
+<section class="founder-story">
+  <div class="founder-story-inner">
+    <span class="eyebrow">Why Nest exists</span>
+    <p class="story-body">
+      I took a break from social media. Not a planned one — I just needed to breathe.<br><br>
+      And somewhere in that quiet, I noticed something. The pressure I'd been carrying — the one that made me think twice before posting anything, the one that turned ordinary moments into <em>content</em> — had lifted. I felt lighter. More like myself. I realised how much of my anxiety hadn't even been mine. It had come from watching other people's lives.<br><br>
+      But I also felt the absence of something real. Community. The kind where you show up as you are and that's enough.<br><br>
+      The idea came to me on one of those still, golden mornings when the sun was coming through the windows and everything felt possible.<br><br>
+      I called it Nest.
+    </p>
+    <div class="story-sig">Steph &nbsp;—&nbsp; Founder of Nest</div>
+  </div>
+</section>
+
+<!-- ─── PAIN LINES — mocha tint ─── -->
+<section class="pain-section">
+  <div class="pain-inner">
+    <span class="eyebrow">You already know this feeling</span>
+    <ul class="pain-lines">
+      <li>The algorithm that knew exactly which photo would make you feel behind — and showed it to you anyway.</li>
+      <li>The morning you lost to a feed you didn't even enjoy.</li>
+      <li>The caption you rewrote four times for a moment that deserved to just be lived.</li>
+      <li>The scroll that followed you out of the app and into the rest of your day.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ─── HINGE ─── -->
+<section style="background:var(--linen);padding:64px 48px 64px;text-align:center;margin:0;display:flex;align-items:center;justify-content:center;min-height:180px;">
+  <p class="hinge" style="text-align:center;width:100%;margin:0;">There's a different way.</p>
+</section>
+
+<!-- ─── RESOLUTION CARDS — ink dark ─── -->
+<section class="resolution">
+  <div class="res-orb-1"></div><div class="res-orb-2"></div>
+  <div class="resolution-inner">
+    <div class="resolution-head">
+      <span class="eyebrow-light">What Nest gives back</span>
+      <h2>A space to feel <em>found.</em></h2>
+    </div>
+    <div class="resolution-grid">
+      <div class="res-card">
+        <div class="res-num">01</div>
+        <h3>Feel <em>found</em>, not famous.</h3>
+        <p>No one knows how many people follow you. Because it doesn't matter here. You're not building a brand. You're finding your people.</p>
+      </div>
+      <div class="res-card">
+        <div class="res-num">02</div>
+        <h3>Come and go <em>without guilt.</em></h3>
+        <p>Real life doesn't run on an algorithm. Step away for a week, a month, a whole season — when you come back you'll feel like you never left. No FOMO. Just warmth.</p>
+      </div>
+      <div class="res-card">
+        <div class="res-num">03</div>
+        <h3>Designed to put the <em>phone down.</em></h3>
+        <p>We don't want you addicted. We want you to feel topped-up — seen, encouraged, held — and then go back to your actual life. That's what a good community does.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── HOW — dusk ─── -->
+<section class="how">
+  <div class="how-inner">
+    <div class="how-head">
+      <span class="eyebrow">How it works</span>
+      <h2>You already know what the other apps feel like.<br><em>Here's what's different.</em></h2>
+    </div>
+    <div class="comparison">
+      <div class="comp-row">
+        <div class="comp-col-header old-h">Everywhere else</div>
+        <div class="comp-col-header new-h">On Nest</div>
+      </div>
+      <div class="comp-row">
+        <div class="comp-old"><div class="comp-old-text">An algorithm decides what you see — and keeps you scrolling</div></div>
+        <div class="comp-new"><div class="comp-new-text">Newest first. <em>Always.</em> No exceptions. No mystery.</div></div>
+      </div>
+      <div class="comp-row">
+        <div class="comp-old"><div class="comp-old-text">A like count tells you how your post did</div></div>
+        <div class="comp-new"><div class="comp-new-text">A warmth button. No public numbers. <em>Ever.</em></div></div>
+      </div>
+      <div class="comp-row">
+        <div class="comp-old"><div class="comp-old-text">Your follower count defines your worth in the room</div></div>
+        <div class="comp-new"><div class="comp-new-text">Nobody can see that number. <em>Including you.</em></div></div>
+      </div>
+      <div class="comp-row">
+        <div class="comp-old"><div class="comp-old-text">Someone's always selling something</div></div>
+        <div class="comp-new"><div class="comp-new-text">No affiliate links. No codes. No selling. <em>Ever.</em></div></div>
+      </div>
+      <div class="comp-row">
+        <div class="comp-old"><div class="comp-old-text">Perfectly curated photos and videos that took hours to make</div></div>
+        <div class="comp-new"><div class="comp-new-text">A real photo. A simple caption. <em>Nothing more.</em></div></div>
+      </div>
+      <div class="comp-row">
+        <div class="comp-old"><div class="comp-old-text">Designed to keep you on it as long as possible</div></div>
+        <div class="comp-new"><div class="comp-new-text">Designed to top you up — and <em>let you go.</em></div></div>
+      </div>
+    </div>
+    <p class="comp-note">Every decision was made by asking one question: does this serve the mom, or the platform?</p>
+  </div>
+</section>
+
+<!-- ─── BRANCHES — ink dark ─── -->
+<section class="branches" id="branches">
+  <div class="b-orb-1"></div><div class="b-orb-2"></div>
+  <div class="branches-inner">
+    <div class="branches-head">
+      <span class="eyebrow-light">Find your people</span>
+      <h2>Your branch is waiting.</h2>
+      <p>You're a mom. You're also a lot of other things. Branches are your communities — small groups of women who care about exactly what you care about.</p>
+      <p class="branch-explain">Choose the ones that feel like home. No algorithm, no noise — just your people.</p>
+    </div>
+    <div class="pills-wrap">
+      <div class="pill blush-glow"><span class="pill-icon">🌸</span> New Moms</div>
+      <div class="pill"><span class="pill-icon">💼</span> Working Moms</div>
+      <div class="pill sage-glow"><span class="pill-icon">🏠</span> Stay at Home</div>
+      <div class="pill blush-glow"><span class="pill-icon">🙏</span> Faith &amp; Motherhood</div>
+      <div class="pill"><span class="pill-icon">🌾</span> Homestead Moms</div>
+      <div class="pill sage-glow"><span class="pill-icon">📖</span> Homeschool Moms</div>
+      <div class="pill blush-glow"><span class="pill-icon">🍳</span> Real Food</div>
+      <div class="pill"><span class="pill-icon">🛍️</span> Thrifting &amp; Sustainable Style</div>
+      <div class="pill sage-glow"><span class="pill-icon">📚</span> Books &amp; Reading</div>
+      <div class="pill blush-glow"><span class="pill-icon">🧶</span> Slow Crafts</div>
+    </div>
+    <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(15px,1.9vw,18px);color:rgba(244,239,230,.75);line-height:1.7;max-width:520px;margin:0 auto 20px;text-align:center;">Leave the links at the door. You're not a rep, a blogger, or a brand — you're just a mom, and that's more than enough.</p>
+    <p class="branches-footnote">New branches grow as the community grows. You can suggest one.</p>
+  </div>
+</section>
+
+<!-- ─── FOUNDING FLOCK — white warm ─── -->
+<section class="founding" id="pricing">
+  <div class="founding-inner">
+    <span class="eyebrow">Founding membership</span>
+    <h2>The first 2,000 moms<br>join completely free.</h2>
+    <p class="founding-sub">Not a trial. Not a limited version. Full access, free forever — because the women who build this from the ground up deserve to belong without question.</p>
+
+    <div class="flock-badge">🌿 Founding Flock — Limited to 2,000</div>
+    <div class="flock-price-wrap">
+      <div class="flock-free">Free</div>
+      <div class="flock-free-label">$4.99/mo</div>
+    </div>
+    <p class="flock-tagline">Forever. No catch. No expiry. Just yours.</p>
+
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span class="progress-taken">Spots are open</span>
+        <span class="progress-left">2,000 available</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="pbar"></div></div>
+      <p class="progress-note">Be one of the first. These won't last forever.</p>
+    </div>
+
+    <ul class="flock-perks">
+      <li class="perk">
+        <div class="perk-icon" style="background:#E8EDE4;">🌿</div>
+        <div class="perk-text"><h4>All branches, always</h4><p>Full access to every branch — now and as new ones open.</p></div>
+      </li>
+      <li class="perk">
+        <div class="perk-icon" style="background:var(--fig-pale);">🤍</div>
+        <div class="perk-text"><h4>Private "Gathered" collection</h4><p>Save posts that matter to you, just for yourself.</p></div>
+      </li>
+      <li class="perk">
+        <div class="perk-icon" style="background:#E8EDE4;">🗺️</div>
+        <div class="perk-text"><h4>Shape what Nest becomes</h4><p>Founding members vote on new branches and features.</p></div>
+      </li>
+      <li class="perk">
+        <div class="perk-icon" style="background:var(--fig-pale);">♾️</div>
+        <div class="perk-text"><h4>Free forever</h4><p>No trial, no credit card, no catch. Locked in from the moment you sign up.</p></div>
+      </li>
+    </ul>
+
+    <div id="founding-form-wrap">
+      <div class="form-row" style="max-width:480px;margin:0 auto 8px;">
+        <input type="text" class="email-in" placeholder="First name" required autocomplete="given-name">
+        <input type="email" class="email-in" placeholder="your@email.com" required autocomplete="email">
+        <button class="cta-btn" onclick="go(event,'founding-success','founding-form-wrap')">Claim my spot 🌿</button>
+      </div>
+      <p class="trust-line">Free forever &nbsp;·&nbsp; No credit card &nbsp;·&nbsp; No spam</p>
+    </div>
+    <div class="success" id="founding-success">
+      <div class="success-chip sc-light">🌿 &nbsp;Welcome to the Founding Flock.</div>
+      <div class="sn-light">We'll be in touch when Nest opens its doors.</div>
+    </div>
+    <p class="flock-after">After 2,000 spots are claimed, Nest moves to $4.99/mo or $49.99/year. Founding members stay free — always.</p>
+  </div>
+</section>
+
+<!-- ─── FUTURE PACING — ink dark ─── -->
+<section class="future-pace">
+  <div class="fp-orb-1"></div><div class="fp-orb-2"></div>
+  <div class="fp-inner">
+    <span class="eyebrow-light" style="margin-bottom:24px;">Picture this</span>
+    <p class="fp-body">
+      You open Nest on a Wednesday morning.<br><br>
+      No highlights. No curated grids. Just a homesteading mom who posted at 6am about a sourdough loaf that didn't rise — and <em>fourteen replies</em> from women who've been there, laughing, sharing what they'd try next time.<br><br>
+      You find your branch. You read something that sounds exactly like a thought you had last week but never said out loud. You reply — honestly, just as yourself.<br><br>
+      And it lands.<br><br>
+      You put the phone down. And you're just there. <em>Present. Yours.</em>
+    </p>
+    <p class="fp-close">That's what we're building. And it starts with the 2,000 women who believed in it before it existed.</p>
+  </div>
+</section>
+
+<!-- ─── FINAL CTA — deep dark ─── -->
+<section class="final" id="join">
+  <div class="f-orb-1"></div><div class="f-orb-2"></div>
+  <div class="final-inner">
+    <h2>Your branch is<br><em>waiting for you.</em></h2>
+    <p>2,000 founding spots. Free forever. No credit card, no catch. Just a seat saved for you — by a mom who built this because she needed it too.</p>
+    <div id="ff">
+      <div class="form-row" style="max-width:480px;margin:0 auto 8px;">
+        <input type="text" class="email-in" placeholder="First name" required autocomplete="given-name">
+        <input type="email" class="email-in" placeholder="your@email.com" required autocomplete="email">
+      </div>
+      <button class="cta-btn-wide" style="max-width:480px;margin:0 auto;display:block;" onclick="go(event,'fs','ff')">Claim my founding spot 🌿</button>
+      <p class="trust-line">Free forever &nbsp;·&nbsp; No spam &nbsp;·&nbsp; Unsubscribe anytime</p>
+    </div>
+    <div class="success" id="fs">
+      <div class="success-chip sc-light">🌿 &nbsp;You're in. Welcome to the Founding Flock.</div>
+      <div class="sn-light">We'll be in touch when Nest opens its doors.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-logo">nest<em>.</em></div>
+  <div class="f-words">A private community app for moms. Built with love, not venture capital.</div>
+</footer>
+<div style="background:var(--mocha);padding:0 52px 28px;text-align:center;">
+  <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:15px;color:rgba(244,239,230,.35);margin:0;">Nest is where the friendships start. Real life is where they happen.</p>
+</div>
+
+<!-- MailerLite -->
+<script src="https://groot.mailerlite.com/js/w/webforms.min.js?v95037e5bac78f29ed026832ca21a7c7b" type="text/javascript"></script>
+
+<script>
+// ─── MailerLite config ───────────────────────────────────────
+const ML_ACCOUNT_ID = '2159234';
+const ML_FORM_ID    = '180960434552046696';
+const ML_URL = `https://assets.mailerlite.com/jsonp/${ML_ACCOUNT_ID}/forms/${ML_FORM_ID}/subscribe`;
+
+// ─── Submit to MailerLite + show Nest success state ──────────
+async function go(e, sid, fid) {
+  if (e && e.preventDefault) e.preventDefault();
+
+  const wrap = document.getElementById(fid);
+  if (!wrap) return;
+
+  const nameInput  = wrap.querySelector('input[type="text"]');
+  const emailInput = wrap.querySelector('input[type="email"]');
+  const firstName  = nameInput  ? nameInput.value.trim()  : '';
+  const email      = emailInput ? emailInput.value.trim() : '';
+
+  // Basic validation
+  if (!email || !email.includes('@')) {
+    if (emailInput) {
+      emailInput.focus();
+      emailInput.style.borderColor = '#9B5E5E';
+      emailInput.placeholder = 'Please enter your email';
+    }
+    return;
+  }
+
+  // Loading state
+  const btn = wrap.querySelector('button');
+  const originalText = btn ? btn.innerHTML : '';
+  if (btn) { btn.innerHTML = 'Saving your spot...'; btn.disabled = true; }
+
+  // Submit to MailerLite
+  try {
+    const body = new URLSearchParams({
+      'fields[name]':  firstName,
+      'fields[email]': email,
+      'ml-submit':     '1',
+      'anticsrf':      'true'
+    });
+    await fetch(ML_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: body.toString(),
+      mode: 'no-cors' // MailerLite uses no-cors — submission still works
+    });
+  } catch (err) {
+    // no-cors fetch always throws — submission still goes through
+  }
+
+  // Show Nest success state
+  wrap.style.display = 'none';
+  const success = document.getElementById(sid);
+  if (success) success.classList.add('show');
+}
+
+// ─── Progress bar ────────────────────────────────────────────
+const foundingSpotsClaimed = 0; // Update this number as signups grow
+window.addEventListener('load', () => {
+  const pct  = (foundingSpotsClaimed / 2000) * 100;
+  const bar   = document.getElementById('pbar');
+  const taken = document.querySelector('.progress-taken');
+  const left  = document.querySelector('.progress-left');
+  if (foundingSpotsClaimed > 0) {
+    setTimeout(() => { if (bar) bar.style.width = pct + '%'; }, 600);
+    if (taken) taken.textContent = foundingSpotsClaimed + ' founding spots claimed';
+    if (left)  left.textContent  = (2000 - foundingSpotsClaimed) + ' remaining';
+  }
+});
+
+// ─── Scroll animations ───────────────────────────────────────
+const io = new IntersectionObserver(entries => {
+  entries.forEach(el => {
+    if (el.isIntersecting) {
+      el.target.style.opacity = '1';
+      el.target.style.transform = 'translateY(0)';
+      io.unobserve(el.target);
+    }
+  });
+}, { threshold: .08 });
+document.querySelectorAll('.res-card,.how-card,.pill,.perk,.sentiment,.pain-lines li').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(18px)';
+  el.style.transition = 'opacity .5s ease,transform .5s ease';
+  io.observe(el);
+});
+</script>
+</body>
+</html>
