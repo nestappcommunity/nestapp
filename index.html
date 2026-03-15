@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nest — A Place to Show Up as a Mom, Not a Brand</title>
+<title>Nest — Find Your People. Show Up as Yourself.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
 :root {
   --linen: #F4EFE6; --blush: #D6A9A2; --sage: #AEB8A2;
   --olive: #6E7461; --mocha: #4A4038; --fig: #9B5E5E; --fig-light: #B57878;
@@ -15,216 +16,235 @@
   --text-body: #7A6E68; --text-soft: #9E948E;
   --text-ghost: #BCB3AC; --border: #DDD4C6; --border-soft: #EAE3D8; --white-warm: #FDFAF6;
   --mocha-tint: #EDE7DE;
+  --max: 600px;
 }
+
 html { scroll-behavior: smooth; }
-section { display: block; margin: 0; }
-body { font-family: 'DM Sans', sans-serif; background: var(--linen); color: var(--mocha); overflow-x: hidden; margin:0; padding:0; }
-@keyframes fadeUp { from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:none;} }
-@keyframes fadeIn { from{opacity:0;}to{opacity:1;} }
-@keyframes drift { 0%,100%{transform:translateY(0);}40%{transform:translateY(-10px);}70%{transform:translateY(5px);} }
-.a1{animation:fadeUp .7s .10s ease both;} .a2{animation:fadeUp .7s .25s ease both;}
-.a3{animation:fadeUp .7s .40s ease both;} .a4{animation:fadeUp .7s .55s ease both;}
-.eyebrow { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--olive); font-weight:500; margin-bottom:16px; display:block; }
-.eyebrow-light { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:rgba(174,184,162,.7); font-weight:500; margin-bottom:16px; display:block; }
+body { font-family: 'DM Sans', sans-serif; background: var(--white-warm); color: var(--mocha); overflow-x: hidden; }
+h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 400; line-height: 1.15; }
+p { line-height: 1.8; }
+
+.eyebrow {
+  display: block; font-size: 10px; letter-spacing: 3.5px;
+  text-transform: uppercase; color: var(--text-ghost);
+  font-weight: 500; margin-bottom: 18px; font-family: 'DM Sans', sans-serif;
+}
 
 /* NAV */
-nav { position:fixed;top:0;left:0;right:0;z-index:100; padding:16px 52px; display:flex;align-items:center;justify-content:space-between; background:rgba(244,239,230,.94); backdrop-filter:blur(18px); border-bottom:1px solid rgba(203,187,168,.4); animation:fadeIn .7s ease both; }
-.nav-logo { font-family:'Playfair Display',serif; font-size:22px; color:var(--mocha); letter-spacing:-.3px; }
-.nav-logo em { color:var(--fig); font-style:normal; }
-.nav-links { display:flex; align-items:center; gap:32px; }
-.nav-link { font-size:14px; color:var(--text-soft); text-decoration:none; transition:color .2s; }
-.nav-link:hover { color:var(--mocha); }
-.nav-btn { background:var(--mocha); color:var(--linen); border:none; border-radius:50px; padding:10px 24px; font-family:'DM Sans',sans-serif; font-size:14px; font-weight:500; cursor:pointer; text-decoration:none; display:inline-block; transition:all .2s; }
-.nav-btn:hover { background:var(--fig); }
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 18px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(240,235,227,0.96); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--mocha); letter-spacing: -.3px; }
+.nav-logo em { color: var(--fig); font-style: normal; }
+.nav-links { display: flex; align-items: center; gap: 36px; }
+.nav-link { font-size: 13px; color: var(--text-soft); text-decoration: none; transition: color .2s; }
+.nav-link:hover { color: var(--mocha); }
+.nav-btn {
+  font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+  color: var(--linen); background: var(--mocha);
+  border: none; border-radius: 50px; padding: 9px 22px;
+  cursor: pointer; text-decoration: none; display: inline-block; transition: background .2s;
+}
+.nav-btn:hover { background: var(--fig); }
 
-/* INPUTS + BUTTONS */
-.email-in { flex:1; padding:14px 20px; border:1.5px solid var(--border); border-radius:50px; font-family:'DM Sans',sans-serif; font-size:15px; color:var(--mocha); background:var(--white-warm); outline:none; transition:border-color .2s,box-shadow .2s; min-width:0; }
-.email-in::placeholder { color:var(--text-ghost); }
-.email-in:focus { border-color:var(--blush); box-shadow:0 0 0 3px rgba(214,169,162,.18); }
-.email-in-dark { flex:1; padding:14px 20px; border:1.5px solid rgba(214,169,162,.2); border-radius:50px; background:rgba(244,239,230,.08); color:rgba(244,239,230,.88); font-family:'DM Sans',sans-serif; font-size:15px; outline:none; transition:border-color .2s; min-width:0; }
-.email-in-dark::placeholder { color:rgba(244,239,230,.28); }
-.email-in-dark:focus { border-color:rgba(214,169,162,.45); }
-.cta-btn { padding:14px 24px; background:var(--fig); color:white; border:none; border-radius:50px; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:500; cursor:pointer; white-space:nowrap; transition:all .2s; box-shadow:0 4px 18px rgba(155,94,94,.3); }
-.cta-btn:hover { background:var(--fig-light); transform:translateY(-1px); }
-.cta-btn-wide { width:100%; padding:15px; background:var(--fig); color:white; border:none; border-radius:50px; font-family:'DM Sans',sans-serif; font-size:15px; font-weight:500; cursor:pointer; transition:all .2s; box-shadow:0 4px 18px rgba(155,94,94,.3); margin-top:8px; }
-.cta-btn-wide:hover { background:var(--fig-light); }
-.form-row { display:flex; gap:8px; flex-wrap:wrap; }
-.form-row input { flex:1; min-width:140px; }
-.trust-line { font-size:12px; color:var(--text-ghost); margin-top:10px; }
-.trust-line-dark { font-size:12px; color:rgba(244,239,230,.28); margin-top:10px; }
-.success { display:none; flex-direction:column; align-items:center; gap:8px; }
-.success.show { display:flex; }
-.success-chip { display:inline-flex; align-items:center; gap:8px; padding:11px 22px; border-radius:50px; font-size:14px; }
-.sc-light { background:var(--fig-pale); color:var(--fig); border:1px solid rgba(155,94,94,.2); }
-.sc-dark { background:rgba(214,169,162,.12); color:rgba(244,239,230,.85); border:1px solid rgba(214,169,162,.2); }
-.sn-light { font-size:13px; color:var(--text-soft); }
-.sn-dark { font-size:13px; color:rgba(244,239,230,.35); }
+/* FORMS */
+.form-row { display: flex; gap: 8px; flex-wrap: wrap; max-width: 480px; margin: 0 auto; }
+.email-in {
+  flex: 1; min-width: 130px; padding: 13px 18px;
+  border: 1px solid var(--border); border-radius: 50px;
+  font-family: 'DM Sans', sans-serif; font-size: 14px;
+  color: var(--mocha); background: var(--white-warm); outline: none; transition: border-color .2s;
+}
+.email-in::placeholder { color: var(--text-ghost); }
+.email-in:focus { border-color: var(--fig-light); }
+.cta-btn {
+  padding: 13px 22px; background: var(--fig); color: white; border: none;
+  border-radius: 50px; font-family: 'DM Sans', sans-serif;
+  font-size: 14px; font-weight: 500; cursor: pointer; white-space: nowrap; transition: background .2s;
+}
+.cta-btn:hover { background: var(--fig-light); }
+.cta-btn-wide {
+  width: 100%; max-width: 480px; display: block; margin: 8px auto 0;
+  padding: 14px; background: var(--fig); color: white; border: none;
+  border-radius: 50px; font-family: 'DM Sans', sans-serif;
+  font-size: 14px; font-weight: 500; cursor: pointer; transition: background .2s;
+}
+.cta-btn-wide:hover { background: var(--fig-light); }
+.trust-line { font-size: 12px; color: var(--text-ghost); margin-top: 10px; text-align: center; }
+.success { display: none; flex-direction: column; align-items: center; gap: 8px; }
+.success.show { display: flex; }
+.success-chip {
+  display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px;
+  border-radius: 50px; font-size: 14px;
+  background: var(--fig-pale); color: var(--fig); border: 1px solid rgba(155,94,94,.2);
+}
+.success-note { font-size: 13px; color: var(--text-soft); }
 
-/* ─── HERO — linen ─── */
-.hero { min-height:100vh; display:grid; place-items:center; padding:130px 24px 90px; position:relative; overflow:hidden; text-align:center; background:var(--linen); }
-.orb { position:absolute; border-radius:50%; pointer-events:none; filter:blur(80px); }
-.orb-1 { width:580px; height:460px; background:radial-gradient(ellipse,rgba(214,169,162,.3) 0%,transparent 68%); top:-120px; left:-140px; animation:drift 14s ease-in-out infinite; }
-.orb-2 { width:440px; height:440px; background:radial-gradient(ellipse,rgba(155,94,94,.12) 0%,transparent 68%); bottom:-80px; right:-100px; animation:drift 19s ease-in-out infinite reverse; }
-.orb-3 { width:300px; height:300px; background:radial-gradient(ellipse,rgba(174,184,162,.22) 0%,transparent 68%); top:38%; left:60%; animation:drift 23s ease-in-out infinite 6s; }
-.hero-inner { position:relative; z-index:1; max-width:660px; }
-.hero-badge { display:inline-flex; align-items:center; gap:8px; background:var(--white-warm); border:1px solid var(--border); padding:7px 18px; border-radius:50px; font-size:12px; color:var(--olive); font-weight:500; margin-bottom:30px; letter-spacing:.3px; box-shadow:0 2px 10px rgba(74,64,56,.07); }
-.hero h1 { font-family:'Playfair Display',serif; font-size:clamp(38px,6.5vw,70px); line-height:1.1; color:var(--mocha); margin-bottom:22px; letter-spacing:-1.5px; }
-.hero h1 em { color:var(--fig); font-style:italic; }
-.hero h1 .soft { font-style:italic; color:var(--olive); }
-.hero-sub { font-size:clamp(16px,2vw,18px); color:var(--text-body); line-height:1.78; font-weight:300; max-width:500px; margin:0 auto 44px; }
-.hero-sub em { color:var(--fig); font-style:italic; font-family:'Playfair Display',serif; }
+/* ─── SECTION TYPES ─── */
+/* Each section picks its own background and padding. No universal border. */
+.wrap { max-width: var(--max); margin: 0 auto; }
+.wrap-wide { max-width: 720px; margin: 0 auto; }
+.center { text-align: center; }
 
-/* ─── FOUNDER STORY — linen, flows from hero ─── */
-.founder-story { background:var(--linen); padding:72px 48px 80px; }
-.founder-story-inner { max-width:640px; margin:0 auto; text-align:center; }
-.story-body { font-family:'Playfair Display',serif; font-size:clamp(16px,2vw,20px); color:var(--mocha); line-height:1.9; font-style:italic; margin-bottom:28px; }
-.story-body em { color:var(--fig); }
-.story-sig { font-size:13px; color:var(--text-soft); font-family:'DM Sans',sans-serif; font-weight:500; display:flex; align-items:center; justify-content:center; gap:10px; }
-.story-sig::before,.story-sig::after { content:''; display:block; width:28px; height:1px; background:var(--border); }
+/* linen — default, open, airy */
+.s-linen { background: var(--white-warm); padding: 40px 24px; }
+/* dusk — slightly deeper, used for weight and shift in mood */
+.s-dusk { background: var(--white-warm); padding: 40px 24px; }
+/* mocha-tint — warmest, used for the hinge moment */
+.s-tint { background: var(--white-warm); padding: 36px 24px; }
+/* white — clean, used for the offer section */
+.s-white { background: var(--white-warm); padding: 40px 24px; }
+/* tight — shorter padding for transitional beats */
+.s-tight { background: var(--white-warm); padding: 28px 24px; }
 
-/* ─── PAIN LINES — mocha tint, feels weighted ─── */
-.pain-section { background:var(--mocha-tint); padding:72px 48px; }
-.pain-inner { max-width:600px; margin:0 auto; text-align:center; }
-.pain-lines { list-style:none; margin-bottom:0; }
-.pain-lines li { font-family:'Playfair Display',serif; font-style:italic; font-size:clamp(16px,2.1vw,21px); color:var(--mocha); line-height:1.6; padding:14px 0; border-bottom:1px solid rgba(74,64,56,.1); opacity:.8; }
-.pain-lines li:last-child { border-bottom:none; }
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 110px 24px 32px; text-align: center; background: var(--white-warm);
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--dusk); border: 1px solid var(--border);
+  padding: 6px 16px; border-radius: 50px;
+  font-size: 12px; color: var(--text-soft); margin-bottom: 36px; letter-spacing: .3px;
+}
+.hero h1 { font-size: clamp(38px,6vw,66px); color: var(--mocha); margin-bottom: 24px; letter-spacing: -1.5px; max-width: 560px; }
+.hero h1 em { color: var(--fig); font-style: italic; }
+.hero-sub { font-size: clamp(16px,2vw,18px); color: var(--text-body); font-weight: 300; max-width: 440px; margin: 0 auto 44px; line-height: 1.8; }
 
-/* ─── SENTIMENTS — fig pale, warm and intimate ─── */
-.sentiments-section { background:var(--linen); padding:72px 48px; }
-.sentiments-inner { max-width:620px; margin:0 auto; text-align:center; }
-.sentiments-inner h2 { font-family:'Playfair Display',serif; font-size:clamp(22px,3vw,34px); color:var(--mocha); margin-bottom:36px; line-height:1.3; }
-.sentiments-inner h2 em { color:var(--fig); font-style:italic; }
-.sentiment { padding:20px 0; border-bottom:1px solid var(--border-soft); font-family:'Playfair Display',serif; font-style:italic; font-size:clamp(15px,1.9vw,19px); color:var(--mocha); line-height:1.65; opacity:.85; }
-.sentiment:last-child { border-bottom:none; }
-.sentiment::before { content:'"'; color:var(--blush); }
-.sentiment::after { content:'"'; color:var(--blush); }
-.hinge { font-family:'Playfair Display',serif; font-size:clamp(24px,3.5vw,38px); color:var(--fig); font-style:italic; margin-top:48px; line-height:1.3; }
+/* ─── PAIN LINES ─── */
+.pain-lines { list-style: none; max-width: 500px; margin: 0 auto 48px; }
+.pain-lines li {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: clamp(15px,2vw,18px); color: var(--mocha);
+  line-height: 1.7; padding: 16px 0;
+  border-bottom: 1px solid var(--border-soft); opacity: .85;
+}
+.pain-lines li:last-child { border-bottom: none; }
+.pain-stake {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: clamp(17px,2.2vw,22px); color: var(--fig);
+  text-align: center; line-height: 1.4;
+  max-width: 400px; margin: 0 auto;
+}
+
+/* ─── GUIDE ─── */
+.guide-body {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: clamp(16px,2vw,20px); color: var(--mocha);
+  line-height: 1.95; margin-bottom: 28px; max-width: var(--max); margin-left: auto; margin-right: auto;
+}
+.guide-body em { color: var(--fig); }
+.guide-sig {
+  font-size: 13px; color: var(--text-soft); font-weight: 500;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+.guide-sig::before, .guide-sig::after { content: ''; display: block; width: 28px; height: 1px; background: var(--border); }
+
+/* ─── RESOLUTION CARDS ─── */
+.res-grid { display: flex; flex-direction: column; gap: 16px; max-width: 540px; margin: 36px auto 0; }
+.res-card { background: var(--linen); padding: 36px 32px; border: 1px solid var(--border); }
+.res-num { font-size: 10px; letter-spacing: 3px; color: var(--text-ghost); margin-bottom: 14px; font-weight: 500; }
+.res-card h3 { font-family: 'Playfair Display', serif; font-size: clamp(17px,1.8vw,20px); color: var(--mocha); margin-bottom: 10px; line-height: 1.3; font-weight: 400; }
+.res-card h3 em { color: var(--fig); font-style: italic; }
+.res-card p { font-size: 13px; color: var(--text-soft); line-height: 1.75; font-weight: 300; }
+
+/* ─── STEPS ─── */
+.steps { display: flex; flex-direction: column; gap: 0; max-width: 540px; margin: 36px auto 0; }
+.step { padding: 28px 0; border-bottom: 1px solid var(--border-soft); display: grid; grid-template-columns: 48px 1fr; gap: 20px; align-items: start; }
+.step:last-child { border-bottom: none; }
+.step-num { font-family: 'Playfair Display', serif; font-size: 38px; color: var(--blush); font-style: italic; line-height: 1; padding-top: 2px; }
+.step h3 { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--mocha); margin-bottom: 6px; line-height: 1.3; font-weight: 400; }
+.step p { font-size: 13px; color: var(--text-soft); line-height: 1.7; font-weight: 300; }
+.step .reassurance { font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: var(--fig); margin-top: 8px; line-height: 1.5; }
 
 /* ─── COMPARISON TABLE ─── */
-.comparison { display:flex; flex-direction:column; gap:0; border:1px solid var(--border-soft); border-radius:20px; overflow:hidden; max-width:720px; margin:0 auto; }
-.comp-row { display:grid; grid-template-columns:1fr 1fr; border-bottom:1px solid var(--border-soft); }
-.comp-row:last-child { border-bottom:none; }
-.comp-old { padding:20px 24px; background:var(--white-warm); display:flex; align-items:center; border-right:1px solid var(--border-soft); }
-.comp-old-text { font-size:14px; color:var(--text-soft); font-weight:300; line-height:1.55; text-decoration:line-through; text-decoration-color:rgba(155,94,94,.3); }
-.comp-new { padding:20px 24px; background:var(--fig-pale); display:flex; align-items:center; }
-.comp-new-text { font-size:14px; color:var(--mocha); font-weight:500; line-height:1.55; }
-.comp-new-text em { color:var(--fig); font-style:normal; }
-.comp-col-header { padding:12px 24px; font-size:11px; letter-spacing:2px; text-transform:uppercase; font-weight:500; border-bottom:1px solid var(--border-soft); }
-.comp-col-header.old-h { background:var(--white-warm); color:var(--text-soft); border-right:1px solid var(--border-soft); }
-.comp-col-header.new-h { background:var(--fig-pale); color:var(--fig); }
-.comp-note { text-align:center; margin-top:20px; font-size:13px; color:var(--text-soft); font-style:italic; font-family:'Playfair Display',serif; }
+.comp-table { border: 1px solid var(--border); margin-top: 28px; }
+.comp-header { display: grid; grid-template-columns: 1fr 1fr; }
+.comp-hcell { padding: 11px 20px; font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 500; border-bottom: 1px solid var(--border); }
+.comp-hcell.old { color: var(--text-ghost); border-right: 1px solid var(--border); background: var(--white-warm); }
+.comp-hcell.new { color: var(--fig); background: var(--dusk); }
+.comp-row { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--border-soft); }
+.comp-row:last-child { border-bottom: none; }
+.comp-old { padding: 20px 22px; border-right: 1px solid var(--border); background: var(--white-warm); }
+.comp-old p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: var(--text-soft); font-weight: 300; line-height: 1.65; text-decoration: line-through; text-decoration-color: rgba(155,94,94,.25); }
+.comp-new { padding: 20px 22px; background: var(--dusk); }
+.comp-new .feeling { font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: var(--mocha); line-height: 1.65; margin-bottom: 6px; }
+.comp-new .feature { font-size: 11px; color: var(--fig); font-weight: 500; letter-spacing: .5px; }
+.comp-note { font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: var(--text-soft); text-align: center; margin-top: 20px; }
 
-/* ─── RESOLUTION CARDS — ink dark, feels like a turn ─── */
-.resolution { background:var(--ink); padding:72px 48px; position:relative; overflow:hidden; }
-.res-orb-1 { position:absolute; width:500px; height:500px; border-radius:50%; background:radial-gradient(ellipse,rgba(214,169,162,.07) 0%,transparent 65%); filter:blur(80px); top:-100px; right:-80px; pointer-events:none; }
-.res-orb-2 { position:absolute; width:360px; height:360px; border-radius:50%; background:radial-gradient(ellipse,rgba(155,94,94,.06) 0%,transparent 65%); filter:blur(70px); bottom:-60px; left:-60px; pointer-events:none; }
-.resolution-inner { position:relative; z-index:1; max-width:960px; margin:0 auto; }
-.resolution-head { text-align:center; margin-bottom:48px; }
-.resolution-head h2 { font-family:'Playfair Display',serif; font-size:clamp(26px,4vw,42px); color:rgba(244,239,230,.94); line-height:1.2; }
-.resolution-head h2 em { color:var(--blush); font-style:italic; }
-.resolution-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
-.res-card { background:rgba(244,239,230,.06); border:1px solid rgba(244,239,230,.1); border-radius:20px; padding:32px 28px; transition:background .2s; }
-.res-card:hover { background:rgba(244,239,230,.09); }
-.res-num { font-size:11px; letter-spacing:3px; color:rgba(244,239,230,.25); font-weight:500; margin-bottom:14px; }
-.res-card h3 { font-family:'Playfair Display',serif; font-size:clamp(17px,1.9vw,21px); color:rgba(244,239,230,.92); margin-bottom:10px; line-height:1.3; }
-.res-card h3 em { color:var(--blush); font-style:italic; }
-.res-card p { font-size:14px; color:rgba(244,239,230,.48); line-height:1.75; font-weight:300; }
+/* ─── BRANCHES ─── */
+.pills { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 36px; }
+.pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--dusk); border: 1px solid var(--border);
+  border-radius: 50px; padding: 8px 16px;
+  font-size: 13px; color: var(--text-ghost); font-weight: 300; transition: border-color .2s, color .2s;
+}
+.pill:hover { border-color: var(--fig-light); color: var(--mocha); }
+.pill-icon { font-size: 14px; }
+.branches-note { font-family: 'Playfair Display', serif; font-style: italic; font-size: 14px; color: var(--text-soft); text-align: center; margin-top: 32px; max-width: 420px; margin-left: auto; margin-right: auto; line-height: 1.75; }
+.branches-footnote { font-size: 12px; color: var(--text-ghost); text-align: center; margin-top: 10px; }
 
-/* ─── HOW — dusk, soft proof section ─── */
-.how { background:var(--dusk); padding:72px 48px; }
-.how-inner { max-width:960px; margin:0 auto; }
-.how-head { text-align:center; margin-bottom:48px; }
-.how-head h2 { font-family:'Playfair Display',serif; font-size:clamp(24px,3.5vw,38px); color:var(--mocha); margin-bottom:12px; }
-.how-head p { font-size:15px; color:var(--text-body); font-weight:300; line-height:1.7; max-width:420px; margin:0 auto; }
-.how-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
-.how-card { padding:30px 26px; border-radius:20px; border:1px solid var(--border-soft); background:var(--white-warm); transition:transform .2s,box-shadow .2s; }
-.how-card:hover { transform:translateY(-3px); box-shadow:0 12px 36px rgba(74,64,56,.07); }
-.how-icon { width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:19px; margin-bottom:14px; }
-.how-card h3 { font-family:'Playfair Display',serif; font-size:17px; color:var(--mocha); margin-bottom:8px; }
-.how-card p { font-size:13px; color:var(--text-body); line-height:1.7; }
+/* ─── SUCCESS SCENE ─── */
+.success-scene {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: clamp(16px,2.1vw,21px); color: var(--mocha);
+  line-height: 1.95; max-width: 500px; margin: 0 auto; text-align: center;
+}
+.success-scene em { color: var(--fig); }
 
-/* ─── BRANCHES — ink dark ─── */
-.branches { background:var(--ink); padding:72px 48px; position:relative; overflow:hidden; }
-.b-orb-1 { position:absolute; width:560px; height:400px; border-radius:50%; background:radial-gradient(ellipse,rgba(214,169,162,.07) 0%,transparent 70%); filter:blur(80px); top:-120px; right:-100px; pointer-events:none; }
-.b-orb-2 { position:absolute; width:360px; height:360px; border-radius:50%; background:radial-gradient(ellipse,rgba(155,94,94,.06) 0%,transparent 70%); filter:blur(70px); bottom:-60px; left:-40px; pointer-events:none; }
-.branches-inner { position:relative; z-index:1; max-width:800px; margin:0 auto; }
-.branches-head { text-align:center; margin-bottom:40px; }
-.branches-head h2 { font-family:'Playfair Display',serif; font-size:clamp(24px,3.5vw,40px); color:rgba(244,239,230,.94); line-height:1.2; margin-bottom:12px; }
-.branches-head p { font-size:15px; color:rgba(244,239,230,.42); font-weight:300; max-width:460px; margin:0 auto 10px; }
-.branch-explain { font-size:14px; color:rgba(244,239,230,.55); font-style:italic; font-family:'Playfair Display',serif; }
-.pills-wrap { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:32px; }
-.pill { display:flex; align-items:center; gap:7px; background:rgba(244,239,230,.07); border:1px solid rgba(244,239,230,.12); border-radius:50px; padding:10px 18px; color:rgba(244,239,230,.7); font-size:13px; transition:all .2s; cursor:default; }
-.pill:hover { background:rgba(244,239,230,.12); transform:translateY(-2px); }
-.pill.blush-glow { background:rgba(214,169,162,.13); border-color:rgba(214,169,162,.28); color:rgba(214,169,162,.88); }
-.pill.sage-glow { background:rgba(174,184,162,.11); border-color:rgba(174,184,162,.26); color:rgba(174,184,162,.85); }
-.pill-icon { font-size:15px; }
-.branches-footnote { text-align:center; font-size:13px; color:rgba(244,239,230,.28); font-family:'Playfair Display',serif; font-style:italic; }
+/* ─── FOUNDING ─── */
+.founding-price { display: flex; align-items: baseline; justify-content: center; gap: 14px; margin: 24px 0 4px; }
+.price-free { font-family: 'Playfair Display', serif; font-size: 72px; line-height: 1; color: var(--mocha); letter-spacing: -2px; }
+.price-was { font-size: 14px; color: var(--text-ghost); text-decoration: line-through; }
+.price-tagline { font-family: 'Playfair Display', serif; font-style: italic; font-size: 14px; color: var(--text-soft); text-align: center; margin-bottom: 36px; }
+.progress-wrap { border: none; background: var(--border-soft); border-radius: 4px; padding: 18px 20px; margin-bottom: 32px; max-width: 480px; margin-left: auto; margin-right: auto; }
+.progress-label { display: flex; justify-content: space-between; margin-bottom: 10px; }
+.progress-taken { font-size: 13px; font-weight: 500; color: var(--mocha); }
+.progress-left { font-size: 12px; color: var(--text-soft); }
+.progress-track { height: 5px; background: var(--border); overflow: hidden; }
+.progress-fill { height: 100%; background: var(--fig); width: 0%; transition: width 1.2s ease; }
+.progress-note { font-size: 11px; color: var(--text-ghost); margin-top: 8px; }
+.perks { margin-bottom: 32px; max-width: 480px; margin-left: auto; margin-right: auto; text-align: left; }
+.perk { display: flex; align-items: flex-start; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--border); }
+.perk:last-child { border-bottom: none; }
+.perk-icon { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+.perk h4 { font-size: 13px; font-weight: 500; color: var(--mocha); margin-bottom: 3px; }
+.perk p { font-size: 12px; color: var(--text-soft); line-height: 1.6; }
+.flock-after { font-size: 12px; color: var(--text-ghost); font-style: italic; font-family: 'Playfair Display', serif; line-height: 1.75; text-align: center; margin-top: 16px; }
 
-/* ─── FOUNDING — white warm, clean offer ─── */
-.founding { background:var(--white-warm); padding:72px 48px; }
-.founding-inner { max-width:640px; margin:0 auto; text-align:center; }
-.founding-inner h2 { font-family:'Playfair Display',serif; font-size:clamp(26px,4vw,42px); color:var(--mocha); margin-bottom:12px; }
-.founding-sub { font-size:15px; color:var(--text-body); margin-bottom:36px; font-weight:300; line-height:1.7; max-width:500px; margin-left:auto; margin-right:auto; }
-.flock-badge { display:inline-flex; align-items:center; gap:8px; background:var(--fig-pale); border:1px solid rgba(155,94,94,.2); color:var(--fig); font-size:12px; font-weight:500; padding:5px 14px; border-radius:50px; margin-bottom:24px; letter-spacing:.3px; }
-.flock-price-wrap { display:flex; align-items:baseline; justify-content:center; gap:12px; margin-bottom:4px; }
-.flock-free { font-family:'Playfair Display',serif; font-size:68px; line-height:1; color:var(--mocha); letter-spacing:-2px; }
-.flock-free-label { font-size:15px; color:var(--text-soft); font-weight:300; text-decoration:line-through; opacity:.5; }
-.flock-tagline { font-size:14px; color:var(--text-soft); margin-bottom:36px; font-style:italic; font-family:'Playfair Display',serif; }
-.progress-wrap { background:var(--linen); border:1px solid var(--border-soft); border-radius:16px; padding:20px 24px; margin-bottom:32px; text-align:left; }
-.progress-label { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
-.progress-taken { font-size:13px; font-weight:500; color:var(--mocha); }
-.progress-left { font-size:12px; color:var(--text-soft); }
-.progress-track { height:7px; background:var(--border-soft); border-radius:50px; overflow:hidden; }
-.progress-fill { height:100%; border-radius:50px; background:linear-gradient(90deg,var(--blush),var(--fig)); width:0%; transition:width 1.2s ease; }
-.progress-note { font-size:11px; color:var(--text-ghost); margin-top:8px; }
-.flock-perks { list-style:none; border:1px solid var(--border-soft); border-radius:18px; overflow:hidden; margin-bottom:32px; text-align:left; }
-.perk { display:flex; align-items:center; gap:14px; padding:16px 20px; background:var(--white-warm); border-bottom:1px solid var(--border-soft); transition:background .15s; }
-.perk:last-child { border-bottom:none; }
-.perk:hover { background:var(--linen); }
-.perk-icon { width:38px; height:38px; border-radius:10px; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:17px; }
-.perk-text h4 { font-size:13px; font-weight:500; color:var(--mocha); margin-bottom:2px; }
-.perk-text p { font-size:12px; color:var(--text-soft); line-height:1.5; }
-.flock-after { font-size:12px; color:var(--text-ghost); font-style:italic; font-family:'Playfair Display',serif; line-height:1.7; margin-top:16px; }
+/* ─── FOOTER ─── */
+footer { background: var(--mocha); padding: 28px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.f-logo { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--linen); }
+.f-logo em { color: var(--blush); font-style: normal; }
+.f-words { font-size: 12px; color: rgba(244,239,230,.4); font-weight: 300; }
+.f-tagline { width: 100%; text-align: center; padding: 0 48px 24px; font-family: 'Playfair Display', serif; font-style: italic; font-size: 14px; color: rgba(244,239,230,.35); }
 
-/* ─── FUTURE PACING — ink dark, cinematic ─── */
-.future-pace { background:var(--ink); padding:80px 48px; position:relative; overflow:hidden; text-align:center; }
-.fp-orb-1 { position:absolute; width:480px; height:480px; border-radius:50%; background:radial-gradient(ellipse,rgba(214,169,162,.08) 0%,transparent 65%); filter:blur(80px); top:-80px; left:-60px; pointer-events:none; }
-.fp-orb-2 { position:absolute; width:340px; height:340px; border-radius:50%; background:radial-gradient(ellipse,rgba(155,94,94,.07) 0%,transparent 65%); filter:blur(70px); bottom:-60px; right:-40px; pointer-events:none; }
-.fp-inner { position:relative; z-index:1; max-width:600px; margin:0 auto; }
-.fp-body { font-family:'Playfair Display',serif; font-style:italic; font-size:clamp(17px,2.2vw,23px); color:rgba(244,239,230,.88); line-height:1.85; margin-bottom:28px; }
-.fp-body em { color:var(--blush); }
-.fp-close { font-size:14px; color:rgba(244,239,230,.38); font-weight:300; line-height:1.7; }
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp { from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;} }
+.a1{animation:fadeUp .7s .1s ease both;}
+.a2{animation:fadeUp .7s .25s ease both;}
+.a3{animation:fadeUp .7s .4s ease both;}
+.a4{animation:fadeUp .7s .55s ease both;}
 
-/* ─── FINAL CTA — deep dark ─── */
-.final { background:var(--linen); padding:90px 48px; text-align:center; position:relative; overflow:hidden; }
-.f-orb-1 { position:absolute; width:500px; height:500px; border-radius:50%; background:radial-gradient(ellipse,rgba(214,169,162,.22) 0%,transparent 65%); filter:blur(90px); top:-140px; left:-80px; pointer-events:none; }
-.f-orb-2 { position:absolute; width:360px; height:360px; border-radius:50%; background:radial-gradient(ellipse,rgba(155,94,94,.1) 0%,transparent 65%); filter:blur(80px); bottom:-70px; right:-50px; pointer-events:none; }
-.final-inner { position:relative; z-index:1; max-width:520px; margin:0 auto; }
-.final h2 { font-family:'Playfair Display',serif; font-size:clamp(26px,4.5vw,48px); color:var(--mocha); line-height:1.15; margin-bottom:14px; }
-.final h2 em { font-style:italic; color:var(--fig); }
-.final p { font-size:16px; color:var(--text-body); margin-bottom:36px; font-weight:300; line-height:1.78; }
-
-/* FOOTER */
-footer { background:var(--mocha); padding:28px 52px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
-.f-logo { font-family:'Playfair Display',serif; font-size:19px; color:rgba(244,239,230,.65); }
-.f-logo em { color:var(--blush); font-style:normal; }
-.f-words { font-size:12px; color:rgba(244,239,230,.25); font-weight:300; }
-
-@media(max-width:800px){ .step-row{flex-direction:column!important;} 
-  nav{padding:14px 20px;} .nav-links .nav-link{display:none;}
-  .hero{padding:110px 20px 60px;}
-  .founder-story,.pain-section,.sentiments-section,.resolution,.how,.branches,.founding,.future-pace,.final{padding-left:20px;padding-right:20px;}
-  .resolution-grid{grid-template-columns:1fr;}
-  .comp-row{grid-template-columns:1fr 1fr;}
-  .comp-old,.comp-new{padding:12px 12px;}
-  .comp-old-text,.comp-new-text{font-size:12px;}
-  .comp-col-header{padding:10px 12px;font-size:10px;}
-  footer{padding:22px 20px;flex-direction:column;text-align:center;}
-  .form-row{flex-direction:column;}
-  .form-row .cta-btn{width:100%;}
+@media(max-width:700px){
+  nav { padding: 14px 20px; }
+  .nav-links .nav-link { display: none; }
+  .s-linen, .s-dusk, .s-tint, .s-white, .s-tight { padding-left: 20px; padding-right: 20px; }
+  .hero { padding: 110px 20px 70px; }
+  footer { padding: 22px 20px; flex-direction: column; text-align: center; }
+  .form-row { flex-direction: column; }
+  .form-row .cta-btn { width: 100%; }
 }
 </style>
 </head>
+
 <body>
 
 <!-- NAV -->
@@ -237,33 +257,34 @@ footer { background:var(--mocha); padding:28px 52px; display:flex; align-items:c
   </div>
 </nav>
 
-<!-- ─── HERO — linen ─── -->
+<!-- ───────────────────────────────────────
+  HERO — wide open, she's the subject
+──────────────────────────────────────── -->
 <section class="hero">
-  <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
-  <div class="hero-inner">
-    <div class="hero-badge a1">🌿 &nbsp;A private app for moms — founding spots now open</div>
-    <h1 class="a2">Finally — a social media app<br>that actually makes<br><span class="soft">you feel good.</span></h1>
-    <p class="hero-sub a3">A private app for moms who want to feel <em>found, not famous.</em> No algorithm, no performing, no pressure — just real community.</p>
-    <p class="hero-sub a3" style="margin-top:-28px;font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(15px,1.8vw,18px);color:var(--fig);">A real photo. An optional caption. No grid, no aesthetic, nothing fancy — just yours.</p>
-    <div id="hf" class="a4">
-      <div class="form-row" style="max-width:480px;margin:0 auto 10px;">
-        <input type="text" class="email-in" placeholder="First name" required autocomplete="given-name">
-        <input type="email" class="email-in" placeholder="your@email.com" required autocomplete="email">
-        <button class="cta-btn" onclick="go(event,'hs','hf')">Claim my spot 🌿</button>
-      </div>
-      <p class="trust-line">No pressure to post. No guilt if you don't. Just come as you are.</p>
-      <p class="trust-line" style="margin-top:5px;">Free forever &nbsp;·&nbsp; No spam &nbsp;·&nbsp; No credit card</p>
+  <div class="hero-badge a1">🌿 &nbsp;A private community app for moms — founding spots now open</div>
+  <h1 class="a2">You were made for <em>real connection.</em></h1>
+  <p class="hero-sub a3">Nest is a private community app for moms. No algorithm, no highlight reels, no performing. Just real women who actually get it — and a seat saved for you.</p>
+  <div id="hf" class="a4">
+    <div class="form-row" style="margin-bottom:10px;">
+      <input type="text" class="email-in" placeholder="First name" required autocomplete="given-name">
+      <input type="email" class="email-in" placeholder="your@email.com" required autocomplete="email">
+      <button class="cta-btn" onclick="go(event,'hs','hf')">Claim my spot 🌿</button>
     </div>
-    <div class="success" id="hs">
-      <div class="success-chip sc-light">🌿 &nbsp;You're in. Welcome to the Founding Flock.</div>
-      <div class="sn-light">We'll be in touch when Nest opens its doors.</div>
-    </div>
+    <p class="trust-line">Free forever &nbsp;·&nbsp; No credit card &nbsp;·&nbsp; No spam</p>
+  </div>
+  <div class="success" id="hs">
+    <div class="success-chip">🌿 &nbsp;You're in. Welcome to the Founding Flock.</div>
+    <div class="success-note">We'll be in touch when Nest opens its doors.</div>
   </div>
 </section>
 
-<!-- ─── PAIN LINES — mocha tint ─── -->
-<section class="pain-section">
-  <div class="pain-inner">
+<!-- ───────────────────────────────────────
+  PROBLEM — dusk background, heavier mood
+  Pain lines first. Then the internal wound. Then the injustice.
+  No labels. She just recognises herself.
+──────────────────────────────────────── -->
+<section class="s-dusk" style="padding-top:24px;">
+  <div class="wrap center">
     <span class="eyebrow">You already know this feeling</span>
     <ul class="pain-lines">
       <li>The algorithm that knew exactly which photo would make you feel behind — and showed it to you anyway.</li>
@@ -271,199 +292,220 @@ footer { background:var(--mocha); padding:28px 52px; display:flex; align-items:c
       <li>The caption you rewrote four times for a moment that deserved to just be lived.</li>
       <li>The scroll that followed you out of the app and into the rest of your day.</li>
     </ul>
+    <p class="pain-stake" style="margin-top:40px;">You've been showing up.<br>You just haven't felt seen.</p>
+    <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(15px,1.8vw,18px);color:var(--fig);text-align:center;margin-top:20px;line-height:1.6;opacity:.85;">It shouldn't cost you your peace to feel connected.</p>
   </div>
 </section>
 
-<!-- ─── FAILURE STAKES ─── -->
-<section style="background:var(--linen);padding:40px 48px;text-align:center;margin:0;">
-  <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(16px,2vw,20px);color:var(--mocha);line-height:1.8;max-width:580px;margin:0 auto;opacity:.85;">It was supposed to connect you. Somehow it just made you feel more alone.</p>
-</section>
 
-<!-- ─── HINGE ─── -->
-<section style="background:var(--mocha-tint);padding:64px 48px 64px;text-align:center;margin:0;display:flex;align-items:center;justify-content:center;min-height:180px;">
-  <p class="hinge" style="text-align:center;width:100%;margin:0;">There's a different way.</p>
-</section>
 
-<!-- ─── FOUNDER STORY — light linen ─── -->
-<section class="founder-story" style="background:var(--linen);">
-  <div class="founder-story-inner">
-    <span class="eyebrow">Why Nest exists</span>
-    <p class="story-body">
-      It was a Sunday afternoon. My husband had taken the kids swimming, the sun was pouring through the windows, and the house was just — quiet. The kind of quiet you forget exists.<br><br>
-      I'd been taking a break from social media. And somewhere in that stillness I noticed something. The pressure I'd been carrying — the one that turned ordinary moments into content — had lifted. I felt lighter. More like myself. I realized how much of my anxiety hadn't even been mine. It had come from watching other people's lives.<br><br>
-      So I started thinking about what it would look like if it didn't have to be that way. I spent two years thinking about what was missing before I built a single screen — because I didn't want to build another version of the thing that broke it. I wanted something different at every level.<br><br>
-      That was the idea. On a sofa. In the sun. On a Sunday.<br><br>
-      I called it Nest. Because every mom deserves a place to land.
+<!-- ───────────────────────────────────────
+  GUIDE — back to linen, warmth returns
+  Steph in three sentences. Empathy then authority.
+──────────────────────────────────────── -->
+<section class="s-linen">
+  <div class="wrap center">
+    <p class="guide-body">
+      I know what it feels like to put the phone down and feel worse than when you picked it up. To scroll and feel behind. To want real connection and end up more alone.<br><br>
+      You deserve a place where that doesn't happen.<br><br>
+      That's why Nest exists. <em>And your seat is already saved.</em>
     </p>
-    <div class="story-sig">Steph &nbsp;—&nbsp; Founder of Nest</div>
+    <div class="guide-sig">Steph &nbsp;—&nbsp; Founder of Nest</div>
   </div>
 </section>
 
-<!-- ─── RESOLUTION CARDS — ink dark ─── -->
-<section class="resolution">
-  <div class="res-orb-1"></div><div class="res-orb-2"></div>
-  <div class="resolution-inner">
-    <div class="resolution-head">
-      <span class="eyebrow-light">What Nest gives back</span>
-      <h2>A space to feel <em>found.</em></h2>
-    </div>
-    <div class="resolution-grid">
+<!-- ───────────────────────────────────────
+  RESOLUTION — dusk, slightly heavier
+  Three cards. Her transformation. Subject is always you.
+──────────────────────────────────────── -->
+<section class="s-dusk">
+  <div class="wrap center">
+    <h2 style="font-size:clamp(24px,3.5vw,40px);">This is what your life looks like <em>on Nest.</em></h2>
+    <div class="res-grid">
       <div class="res-card">
         <div class="res-num">01</div>
-        <h3>Feel <em>found</em>, not famous.</h3>
-        <p>No one knows how many people follow you. Because it doesn't matter here. You're not building a brand. You're finding your people.</p>
+        <h3>You feel <em>found</em>, not famous.</h3>
+        <p>You stop building a brand and start finding your people. Nobody can see your follower count — including you. Because here, it was never the point.</p>
       </div>
       <div class="res-card">
         <div class="res-num">02</div>
-        <h3>Come and go <em>without guilt.</em></h3>
-        <p>Real life doesn't run on an algorithm. Step away for a week, a month, a whole season — when you come back you'll feel like you never left. No FOMO. Just warmth.</p>
+        <h3>You come and go <em>without guilt.</em></h3>
+        <p>You step away for a week, a month, a whole season — and when you come back it feels like you never left. No streak to maintain. No feed that punishes you for living your life.</p>
       </div>
       <div class="res-card">
         <div class="res-num">03</div>
-        <h3>Designed to put the <em>phone down.</em></h3>
-        <p>We don't want you addicted. We want you to feel topped-up — seen, encouraged, held — and then go back to your actual life. That's what a good community does.</p>
+        <h3>You put the <em>phone down.</em></h3>
+        <p>You leave feeling topped up — seen, encouraged, held — and go back to your actual life. That's not a side effect of Nest. That's the whole point of it.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ─── HOW — dusk ─── -->
-<section class="how">
-  <div class="how-inner">
-    <div class="how-head">
-      <span class="eyebrow">How it works</span>
-      <h2>You already know what the other apps feel like.<br><em>Here's what's different.</em></h2>
+<!-- ───────────────────────────────────────
+  PLAN — linen, open and calm
+  Three steps. Each one ends with reassurance.
+──────────────────────────────────────── -->
+<section class="s-linen">
+  <div class="wrap center">
+    <span class="eyebrow">Here's how it works</span>
+    <h2 style="font-size:clamp(22px,3vw,36px);">Three steps.<br><em>That's all it takes.</em></h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <h3>Claim your founding spot</h3>
+          <p>Free forever. No credit card. Just your name and email and your seat is saved.</p>
+          <p class="reassurance">You're not signing up for an app. You're saving a seat that won't exist later.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <h3>Find your branches</h3>
+          <p>Choose the communities that feel like home. The ones where your people already are.</p>
+          <p class="reassurance">You don't have to introduce yourself, post anything, or perform. Just look around.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <h3>Show up as yourself</h3>
+          <p>A real photo. An honest caption. Nothing more. No performing, no pressure, no guilt.</p>
+          <p class="reassurance">This is yours. It moves at your pace — not the algorithm's.</p>
+        </div>
+      </div>
     </div>
-    <div class="comparison">
-      <div class="comp-row">
-        <div class="comp-col-header old-h">Everywhere else</div>
-        <div class="comp-col-header new-h">On Nest</div>
+  </div>
+</section>
+
+
+
+<!-- ───────────────────────────────────────
+  HOW IT'S DIFFERENT — white, feels clinical in a good way
+  Her life before vs her life on Nest. Feature underneath the feeling.
+──────────────────────────────────────── -->
+<section class="s-white" style="padding-top:24px;">
+  <div class="wrap-wide">
+    <div class="center" style="margin-bottom:48px;">
+      <span class="eyebrow">Here's what actually changes</span>
+      <h2 style="font-size:clamp(22px,3vw,36px);">Your life before.<br><em>Your life on Nest.</em></h2>
+    </div>
+    <div class="comp-table">
+      <div class="comp-header">
+        <div class="comp-hcell old">Your life right now</div>
+        <div class="comp-hcell new">Your life on Nest</div>
       </div>
       <div class="comp-row">
-        <div class="comp-old"><div class="comp-old-text">An algorithm decides what you see — and keeps you scrolling</div></div>
-        <div class="comp-new"><div class="comp-new-text">Newest first. <em>Always.</em> No exceptions. No mystery.</div></div>
+        <div class="comp-old"><p>You open the app and never know what you'll see — or why it's there</p></div>
+        <div class="comp-new">
+          <p class="feeling">You see the newest post first. Always. No mystery, no manipulation.</p>
+          <p class="feature">No algorithm. Ever.</p>
+        </div>
       </div>
       <div class="comp-row">
-        <div class="comp-old"><div class="comp-old-text">A like count tells you how your post did</div></div>
-        <div class="comp-new"><div class="comp-new-text">A warmth button. No public numbers. <em>Ever.</em></div></div>
+        <div class="comp-old"><p>You rewrite the caption four times and still feel like it's not quite right</p></div>
+        <div class="comp-new">
+          <p class="feeling">You share a real photo with an honest caption. That's all it takes. That's enough.</p>
+          <p class="feature">No grid. No aesthetic. No performance.</p>
+        </div>
       </div>
       <div class="comp-row">
-        <div class="comp-old"><div class="comp-old-text">Your follower count defines your worth in the room</div></div>
-        <div class="comp-new"><div class="comp-new-text">Nobody can see that number. <em>Including you.</em></div></div>
-      </div>
-      <div class="comp-row">
-        <div class="comp-old"><div class="comp-old-text">Someone's always selling something</div></div>
-        <div class="comp-new"><div class="comp-new-text">No affiliate links. No codes. No selling. <em>Ever.</em></div></div>
-      </div>
-      <div class="comp-row">
-        <div class="comp-old"><div class="comp-old-text">Perfectly curated photos and videos that took hours to make</div></div>
-        <div class="comp-new"><div class="comp-new-text">A real photo. A simple caption. <em>Nothing more.</em></div></div>
-      </div>
-      <div class="comp-row">
-        <div class="comp-old"><div class="comp-old-text">Designed to keep you on it as long as possible</div></div>
-        <div class="comp-new"><div class="comp-new-text">Designed to top you up — and <em>let you go.</em></div></div>
+        <div class="comp-old"><p>You put the phone down and feel vaguely worse than when you picked it up</p></div>
+        <div class="comp-new">
+          <p class="feeling">You put the phone down feeling topped up — seen, encouraged, held.</p>
+          <p class="feature">Built to give back, not to keep you scrolling.</p>
+        </div>
       </div>
     </div>
     <p class="comp-note">Every decision was made by asking one question: does this serve the mom, or the platform?</p>
   </div>
 </section>
 
-<!-- ─── THREE STEP PLAN ─── -->
-<section style="background:var(--white-warm);padding:72px 24px;text-align:center;">
-  <div style="max-width:900px;margin:0 auto;">
-    <span class="eyebrow">How to get started</span>
-    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,3.5vw,38px);color:var(--mocha);margin-bottom:48px;line-height:1.3;">Three steps. That's it.</h2>
-    <div style="display:flex;gap:16px;align-items:stretch;flex-wrap:nowrap;">
-      <div style="flex:1;min-width:0;padding:28px 20px;border-radius:20px;border:1px solid var(--border-soft);background:var(--linen);box-sizing:border-box;">
-        <div style="font-family:'Playfair Display',serif;font-size:42px;color:var(--fig);font-style:italic;line-height:1;margin-bottom:12px;">1</div>
-        <h3 style="font-family:'Playfair Display',serif;font-size:16px;color:var(--mocha);margin-bottom:8px;line-height:1.3;">Claim your founding spot</h3>
-        <p style="font-size:12px;color:var(--text-body);line-height:1.65;">Free forever. No credit card. Just your name and email and your seat is saved.</p>
-      </div>
-      <div style="flex:1;min-width:0;padding:28px 20px;border-radius:20px;border:1px solid var(--border-soft);background:var(--linen);box-sizing:border-box;">
-        <div style="font-family:'Playfair Display',serif;font-size:42px;color:var(--fig);font-style:italic;line-height:1;margin-bottom:12px;">2</div>
-        <h3 style="font-family:'Playfair Display',serif;font-size:16px;color:var(--mocha);margin-bottom:8px;line-height:1.3;">Find your branches</h3>
-        <p style="font-size:12px;color:var(--text-body);line-height:1.65;">Choose the communities that feel like home. The ones where your people already are.</p>
-      </div>
-      <div style="flex:1;min-width:0;padding:28px 20px;border-radius:20px;border:1px solid var(--border-soft);background:var(--linen);box-sizing:border-box;">
-        <div style="font-family:'Playfair Display',serif;font-size:42px;color:var(--fig);font-style:italic;line-height:1;margin-bottom:12px;">3</div>
-        <h3 style="font-family:'Playfair Display',serif;font-size:16px;color:var(--mocha);margin-bottom:8px;line-height:1.3;">Show up as yourself</h3>
-        <p style="font-size:12px;color:var(--text-body);line-height:1.65;">A real photo. An honest caption. Nothing more. No performing, no pressure, no guilt.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── BRANCHES — ink dark ─── -->
-<section class="branches" id="branches">
-  <div class="b-orb-1"></div><div class="b-orb-2"></div>
-  <div class="branches-inner">
-    <div class="branches-head">
-      <span class="eyebrow-light">Find your people</span>
-      <h2>Your branch is waiting.</h2>
-      <p>You're a mom. You're also a lot of other things. Branches are your communities — small groups of women who care about exactly what you care about.</p>
-      <p class="branch-explain">Choose the ones that feel like home. No algorithm, no noise — just your people.</p>
-    </div>
-    <div class="pills-wrap">
-      <div class="pill blush-glow"><span class="pill-icon">🌸</span> New Moms</div>
+<!-- ───────────────────────────────────────
+  BRANCHES — linen, relaxed
+──────────────────────────────────────── -->
+<section class="s-linen" id="branches" >
+  <div class="wrap center">
+    <span class="eyebrow">Find your people</span>
+    <h2 style="font-size:clamp(22px,3.5vw,40px);">Your branch is <em>waiting.</em></h2>
+    <p style="font-size:15px;color:var(--text-body);font-weight:300;max-width:400px;margin:14px auto 0;line-height:1.75;">You're a mom. You're also a lot of other things. Branches are small groups of women who care about exactly what you care about.</p>
+    <div class="pills">
+      <div class="pill"><span class="pill-icon">🌸</span> New Moms</div>
       <div class="pill"><span class="pill-icon">💼</span> Working Moms</div>
-      <div class="pill sage-glow"><span class="pill-icon">🏠</span> Stay at Home</div>
+      <div class="pill"><span class="pill-icon">🏠</span> Stay at Home</div>
       <div class="pill"><span class="pill-icon">🌾</span> Homestead Moms</div>
-      <div class="pill sage-glow"><span class="pill-icon">📖</span> Homeschool Moms</div>
-      <div class="pill blush-glow"><span class="pill-icon">🍳</span> Real Food</div>
+      <div class="pill"><span class="pill-icon">📖</span> Homeschool Moms</div>
+      <div class="pill"><span class="pill-icon">🍳</span> Real Food</div>
       <div class="pill"><span class="pill-icon">🛍️</span> Thrifting &amp; Vintage</div>
-      <div class="pill sage-glow"><span class="pill-icon">🌿</span> Slow Fashion</div>
-      <div class="pill sage-glow"><span class="pill-icon">📚</span> Books &amp; Reading</div>
-      <div class="pill blush-glow"><span class="pill-icon">🧶</span> Slow Crafts</div>
+      <div class="pill"><span class="pill-icon">🌿</span> Slow Fashion</div>
+      <div class="pill"><span class="pill-icon">📚</span> Books &amp; Reading</div>
+      <div class="pill"><span class="pill-icon">🧶</span> Slow Crafts</div>
     </div>
-    <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(15px,1.9vw,18px);color:rgba(244,239,230,.75);line-height:1.7;max-width:520px;margin:0 auto 20px;text-align:center;">Leave the links at the door. You're not a rep, a blogger, or a brand — you're just a mom, and that's more than enough.</p>
+    <p class="branches-note">Leave the links at the door. You're not a rep, a blogger, or a brand — you're just a mom, and that's more than enough.</p>
     <p class="branches-footnote">New branches grow as the community grows. You can suggest one.</p>
   </div>
 </section>
 
-<!-- ─── FOUNDING FLOCK — white warm ─── -->
-<section class="founding" id="pricing">
-  <div class="founding-inner">
+<!-- ───────────────────────────────────────
+  SUCCESS SCENE — dusk, cinematic
+  She sees herself in the story. No eyebrow. Just the scene.
+──────────────────────────────────────── -->
+<section class="s-dusk" style="text-align:center;">
+  <div class="wrap">
+    <p class="success-scene">
+      You open Nest on a Wednesday morning.<br><br>
+      No highlights. No curated grids. Just a homesteading mom who posted at 6am about a sourdough loaf that didn't rise — and <em>fourteen replies</em> from women who've been there, laughing, sharing what they'd try next time.<br><br>
+      You find your branch. You read something that sounds exactly like a thought you had last week but never said out loud. You reply — honestly, just as yourself.<br><br>
+      And it lands.<br><br>
+      You put the phone down. You're just there. <em>Present. Yours.</em>
+    </p>
+  </div>
+</section>
+
+<!-- ───────────────────────────────────────
+  FAILURE — mocha tint, one breath
+  Two sentences. Quiet. The cost of not acting.
+──────────────────────────────────────── -->
+<section class="s-tint" style="text-align:center;">
+  <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(15px,1.9vw,19px);color:var(--text-soft);line-height:1.85;max-width:440px;margin:0 auto 18px;">Without this, next week looks exactly like last week. The same scroll. The same feeling after. You already know what that costs you.</p>
+  <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(20px,2.8vw,30px);color:var(--fig);line-height:1.3;">It doesn't have to.</p>
+</section>
+
+<!-- ───────────────────────────────────────
+  FOUNDING FLOCK — white, the offer
+──────────────────────────────────────── -->
+<section class="s-white" id="pricing">
+  <div class="wrap center">
     <span class="eyebrow">Founding membership</span>
-    <h2>The first 2,000 moms<br>join completely free.</h2>
-    <p class="founding-sub">Not a trial. Not a limited version. Full access, free forever — because the women who build this from the ground up deserve to belong without question.</p>
-
-    <div class="flock-badge">🌿 Founding Flock — Limited to 2,000</div>
-    <div class="flock-price-wrap">
-      <div class="flock-free">Free</div>
-      <div class="flock-free-label">$4.99/mo</div>
+    <h2 style="font-size:clamp(26px,4vw,42px);">The first 2,000 moms<br>join <em>completely free.</em></h2>
+    <p style="font-size:15px;color:var(--text-body);font-weight:300;max-width:440px;margin:14px auto 0;line-height:1.75;">Not a trial. Not a limited version. Full access, free forever — because the women who build this from the ground up deserve to belong without question.</p>
+    <div class="founding-price">
+      <div class="price-free">Free</div>
+      <div class="price-was">$4.99/mo</div>
     </div>
-    <p class="flock-tagline">Forever. No catch. No expiry. Just yours.</p>
+    <div style="display:inline-flex;align-items:center;gap:8px;background:var(--dusk);border:1px solid var(--border);color:var(--fig);font-size:12px;font-weight:500;padding:5px 14px;border-radius:50px;margin-bottom:12px;letter-spacing:.3px;">🌿 Founding Flock — Limited to 2,000</div>
+    <p class="price-tagline">Forever. No catch. No expiry. Just yours.</p>
 
-    <div class="progress-wrap">
-      <div class="progress-label">
-        <span class="progress-taken">Spots are open</span>
-        <span class="progress-left">2,000 available</span>
+    <div class="perks">
+      <div class="perk">
+        <span class="perk-icon">🌿</span>
+        <div><h4>All branches, always</h4><p>Full access to every branch — now and as new ones open.</p></div>
       </div>
-      <div class="progress-track"><div class="progress-fill" id="pbar"></div></div>
-      <p class="progress-note">Be one of the first. These won't last forever.</p>
+      <div class="perk">
+        <span class="perk-icon">🤍</span>
+        <div><h4>Private "Gathered" collection</h4><p>Save posts that matter to you, just for yourself.</p></div>
+      </div>
+      <div class="perk">
+        <span class="perk-icon">🗺️</span>
+        <div><h4>Shape what Nest becomes</h4><p>Founding members vote on new branches and features.</p></div>
+      </div>
+      <div class="perk">
+        <span class="perk-icon">♾️</span>
+        <div><h4>Free forever</h4><p>No trial, no credit card, no catch. Locked in from the moment you sign up.</p></div>
+      </div>
     </div>
-
-    <ul class="flock-perks">
-      <li class="perk">
-        <div class="perk-icon" style="background:#E8EDE4;">🌿</div>
-        <div class="perk-text"><h4>All branches, always</h4><p>Full access to every branch — now and as new ones open.</p></div>
-      </li>
-      <li class="perk">
-        <div class="perk-icon" style="background:var(--fig-pale);">🤍</div>
-        <div class="perk-text"><h4>Private "Gathered" collection</h4><p>Save posts that matter to you, just for yourself.</p></div>
-      </li>
-      <li class="perk">
-        <div class="perk-icon" style="background:#E8EDE4;">🗺️</div>
-        <div class="perk-text"><h4>Shape what Nest becomes</h4><p>Founding members vote on new branches and features.</p></div>
-      </li>
-      <li class="perk">
-        <div class="perk-icon" style="background:var(--fig-pale);">♾️</div>
-        <div class="perk-text"><h4>Free forever</h4><p>No trial, no credit card, no catch. Locked in from the moment you sign up.</p></div>
-      </li>
-    </ul>
-
     <div id="founding-form-wrap">
-      <div class="form-row" style="max-width:480px;margin:0 auto 8px;">
+      <div class="form-row" style="margin-bottom:8px;">
         <input type="text" class="email-in" placeholder="First name" required autocomplete="given-name">
         <input type="email" class="email-in" placeholder="your@email.com" required autocomplete="email">
         <button class="cta-btn" onclick="go(event,'founding-success','founding-form-wrap')">Claim my spot 🌿</button>
@@ -471,46 +513,32 @@ footer { background:var(--mocha); padding:28px 52px; display:flex; align-items:c
       <p class="trust-line">Free forever &nbsp;·&nbsp; No credit card &nbsp;·&nbsp; No spam</p>
     </div>
     <div class="success" id="founding-success">
-      <div class="success-chip sc-light">🌿 &nbsp;Welcome to the Founding Flock.</div>
-      <div class="sn-light">We'll be in touch when Nest opens its doors.</div>
+      <div class="success-chip">🌿 &nbsp;Welcome to the Founding Flock.</div>
+      <div class="success-note">We'll be in touch when Nest opens its doors.</div>
     </div>
     <p class="flock-after">After 2,000 spots are claimed, Nest moves to $4.99/mo or $49.99/year. Founding members stay free — always.</p>
   </div>
 </section>
 
-<!-- ─── FUTURE PACING — ink dark ─── -->
-<section class="future-pace">
-  <div class="fp-orb-1"></div><div class="fp-orb-2"></div>
-  <div class="fp-inner">
-    <span class="eyebrow-light" style="margin-bottom:24px;">Picture this</span>
-    <p class="fp-body">
-      You open Nest on a Wednesday morning.<br><br>
-      No highlights. No curated grids. Just a homesteading mom who posted at 6am about a sourdough loaf that didn't rise — and <em>fourteen replies</em> from women who've been there, laughing, sharing what they'd try next time.<br><br>
-      You find your branch. You read something that sounds exactly like a thought you had last week but never said out loud. You reply — honestly, just as yourself.<br><br>
-      And it lands.<br><br>
-      You put the phone down. And you're just there. <em>Present. Yours.</em>
-    </p>
-    <p class="fp-close">That's what we're building. And it starts with the 2,000 women who believed in it before it existed.</p>
-  </div>
-</section>
-
-<!-- ─── FINAL CTA — deep dark ─── -->
-<section class="final" id="join">
-  <div class="f-orb-1"></div><div class="f-orb-2"></div>
-  <div class="final-inner">
-    <h2>Your branch is<br><em>waiting for you.</em></h2>
-    <p>2,000 founding spots. Free forever. No credit card, no catch. Just a seat saved for you — by a mom who built this because she needed it too.</p>
+<!-- ───────────────────────────────────────
+  FINAL CTA — linen, open, last thing she sees
+  Her transformation. Not the product.
+──────────────────────────────────────── -->
+<section class="s-linen" id="join" style="text-align:center;">
+  <div class="wrap">
+    <h2 style="font-size:clamp(28px,4.5vw,50px);margin-bottom:14px;">Your people are<br><em>already in there.</em></h2>
+    <p style="font-size:16px;color:var(--text-body);font-weight:300;line-height:1.78;margin-bottom:36px;max-width:400px;margin-left:auto;margin-right:auto;">2,000 founding spots. Free forever. No credit card, no catch. Just a seat saved for you — the moment you say yes.</p>
     <div id="ff">
-      <div class="form-row" style="max-width:480px;margin:0 auto 8px;">
+      <div class="form-row" style="margin-bottom:8px;">
         <input type="text" class="email-in" placeholder="First name" required autocomplete="given-name">
         <input type="email" class="email-in" placeholder="your@email.com" required autocomplete="email">
       </div>
-      <button class="cta-btn-wide" style="max-width:480px;margin:0 auto;display:block;" onclick="go(event,'fs','ff')">Claim my founding spot 🌿</button>
+      <button class="cta-btn-wide" onclick="go(event,'fs','ff')">Claim my founding spot 🌿</button>
       <p class="trust-line">Free forever &nbsp;·&nbsp; No spam &nbsp;·&nbsp; Unsubscribe anytime</p>
     </div>
     <div class="success" id="fs">
-      <div class="success-chip sc-light">🌿 &nbsp;You're in. Welcome to the Founding Flock.</div>
-      <div class="sn-light">We'll be in touch when Nest opens its doors.</div>
+      <div class="success-chip">🌿 &nbsp;You're in. Welcome to the Founding Flock.</div>
+      <div class="success-note">We'll be in touch when Nest opens its doors.</div>
     </div>
   </div>
 </section>
@@ -519,99 +547,49 @@ footer { background:var(--mocha); padding:28px 52px; display:flex; align-items:c
 <footer>
   <div class="f-logo">nest<em>.</em></div>
   <div class="f-words">A private community app for moms. Built with love, not venture capital.</div>
+  <p class="f-tagline">Nest is where the friendships start. Real life is where they happen.</p>
 </footer>
-<div style="background:var(--mocha);padding:0 52px 28px;text-align:center;">
-  <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:15px;color:rgba(244,239,230,.35);margin:0;">Nest is where the friendships start. Real life is where they happen.</p>
-</div>
 
 <!-- MailerLite -->
 <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v95037e5bac78f29ed026832ca21a7c7b" type="text/javascript"></script>
 
 <script>
-// ─── MailerLite config ───────────────────────────────────────
 const ML_ACCOUNT_ID = '2159234';
 const ML_FORM_ID    = '180960434552046696';
 const ML_URL = `https://assets.mailerlite.com/jsonp/${ML_ACCOUNT_ID}/forms/${ML_FORM_ID}/subscribe`;
 
-// ─── Submit to MailerLite + show Nest success state ──────────
 async function go(e, sid, fid) {
   if (e && e.preventDefault) e.preventDefault();
-
   const wrap = document.getElementById(fid);
   if (!wrap) return;
-
   const nameInput  = wrap.querySelector('input[type="text"]');
   const emailInput = wrap.querySelector('input[type="email"]');
   const firstName  = nameInput  ? nameInput.value.trim()  : '';
   const email      = emailInput ? emailInput.value.trim() : '';
-
-  // Basic validation
   if (!email || !email.includes('@')) {
-    if (emailInput) {
-      emailInput.focus();
-      emailInput.style.borderColor = '#9B5E5E';
-      emailInput.placeholder = 'Please enter your email';
-    }
+    if (emailInput) { emailInput.focus(); emailInput.style.borderColor = '#9B5E5E'; emailInput.placeholder = 'Please enter your email'; }
     return;
   }
-
-  // Loading state
   const btn = wrap.querySelector('button');
-  const originalText = btn ? btn.innerHTML : '';
   if (btn) { btn.innerHTML = 'Saving your spot...'; btn.disabled = true; }
-
-  // Submit to MailerLite
   try {
-    const body = new URLSearchParams({
-      'fields[name]':  firstName,
-      'fields[email]': email,
-      'ml-submit':     '1',
-      'anticsrf':      'true'
-    });
-    await fetch(ML_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: body.toString(),
-      mode: 'no-cors' // MailerLite uses no-cors — submission still works
-    });
-  } catch (err) {
-    // no-cors fetch always throws — submission still goes through
-  }
-
-  // Show Nest success state
+    const body = new URLSearchParams({ 'fields[name]': firstName, 'fields[email]': email, 'ml-submit': '1', 'anticsrf': 'true' });
+    await fetch(ML_URL, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body.toString(), mode: 'no-cors' });
+  } catch (err) {}
   wrap.style.display = 'none';
   const success = document.getElementById(sid);
   if (success) success.classList.add('show');
 }
 
-// ─── Progress bar ────────────────────────────────────────────
-const foundingSpotsClaimed = 0; // Update this number as signups grow
-window.addEventListener('load', () => {
-  const pct  = (foundingSpotsClaimed / 2000) * 100;
-  const bar   = document.getElementById('pbar');
-  const taken = document.querySelector('.progress-taken');
-  const left  = document.querySelector('.progress-left');
-  if (foundingSpotsClaimed > 0) {
-    setTimeout(() => { if (bar) bar.style.width = pct + '%'; }, 600);
-    if (taken) taken.textContent = foundingSpotsClaimed + ' founding spots claimed';
-    if (left)  left.textContent  = (2000 - foundingSpotsClaimed) + ' remaining';
-  }
-});
 
-// ─── Scroll animations ───────────────────────────────────────
+
 const io = new IntersectionObserver(entries => {
   entries.forEach(el => {
-    if (el.isIntersecting) {
-      el.target.style.opacity = '1';
-      el.target.style.transform = 'translateY(0)';
-      io.unobserve(el.target);
-    }
+    if (el.isIntersecting) { el.target.style.opacity = '1'; el.target.style.transform = 'translateY(0)'; io.unobserve(el.target); }
   });
 }, { threshold: .08 });
-document.querySelectorAll('.res-card,.how-card,.pill,.perk,.sentiment,.pain-lines li').forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(18px)';
-  el.style.transition = 'opacity .5s ease,transform .5s ease';
+document.querySelectorAll('.res-card, .perk, .pill, .step, .pain-lines li').forEach(el => {
+  el.style.opacity = '0'; el.style.transform = 'translateY(16px)'; el.style.transition = 'opacity .5s ease, transform .5s ease';
   io.observe(el);
 });
 </script>
